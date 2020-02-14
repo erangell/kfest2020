@@ -1,0 +1,65 @@
+!
+8500:CLD
+ LDY   #$00
+ LDA   ($06),Y
+ BMI   $8508
+ BRK
+ AND   #$3F
+ TAX
+ INY
+ LDA   #$BA
+ JSR   $FDED
+ LDA   #$A0
+ JSR   $FDED
+ LDA   ($06),Y
+ ORA   #$80
+ JSR   $FDED
+ INY
+ DEX
+ BNE   $8516
+ LDA   #$A0
+ JSR   $FDED
+ INY
+ INY
+ LDA   ($06),Y
+ CMP   #$BE
+ BEQ   $852F
+ BRK
+ INY
+ LDA   ($06),Y
+ CMP   #$0E
+ BEQ   $8537
+ BRK
+ INY
+ TYA
+ CLC
+ ADC   $06
+ STA   $06
+ STA   $08
+ LDA   #$00
+ ADC   $07
+ STA   $07
+ STA   $09
+ LDY   #$00
+ LDA   ($08),Y
+ STA   $06
+ INY
+ LDA   ($08),Y
+ STA   $07
+ JSR   $8300
+ LDA   #$A0
+ JSR   $FDED
+ JSR   $8700
+ BCC   $8556
+ LDA   #$8D
+ JSR   $FDED
+ RTS
+8700: CLC
+ LDA   $06
+ ADC   #$02
+ STA   $06
+ LDA   $07
+ ADC   #$00
+ STA   $07
+ RTS
+

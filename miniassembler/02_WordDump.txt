@@ -1,0 +1,42 @@
+AF7:86
+1BF8:85
+15C2:C1
+!
+8200:CLD
+ LDA #$18 
+ STA $06 
+ LDA #$81 
+ STA $07 
+ LDA $07
+ JSR $FDDA
+ LDA $06
+ JSR $FDDA
+ LDA #$A0
+ JSR $FDED
+ LDY #$00
+ LDA(6),Y
+ AND #$3F 
+ TAX 
+ INY
+ LDA(6),Y
+ ORA #$80 
+ JSR $FDED 
+ DEX
+ BNE $821F
+ INY
+ LDA(6),Y
+ STA $08
+ INY
+ LDA(6),Y
+ STA $09 
+ LDA #$8D 
+ JSR $FDED 
+ LDA $09 
+ STA $07 
+ LDA $08 
+ STA $06 
+ LDA $07 
+ BNE $8209
+ RTS 
+ 
+

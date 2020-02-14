@@ -1,0 +1,87 @@
+FB7:1 1
+!
+8400:LDA   #$98
+ STA   $06
+ LDA   #$9E
+ STA   $08
+ LDA   #$08
+ STA   $07
+ STA   $09
+ LDY   #$00
+ LDA   ($08),Y
+ BEQ   $8420
+ INY
+ BNE   $8410
+ INC   $09
+ LDA   $09
+ CMP   #$1F
+ BCC   $8420
+ RTS
+ INY
+ BNE   $8425
+ INC   $09
+ LDA   $09
+ CMP   #$1F
+ BEQ   $841F
+ LDA   ($08),Y
+ BNE   $8414
+ LDA   $08
+ PHA
+ LDA $09
+ PHA
+ DEY
+ CPY   #$FF
+ BNE   $843C
+ DEC   $09
+ LDA   $06
+ STA   ($08),Y
+ INY
+ BNE   $8445
+ INC   $09
+ LDA   $07
+ STA   ($08),Y
+ DEY 
+ CPY   #$FF
+ BNE   $8451
+ DEC   $09
+ DEY 
+ CPY   #$FF
+ BNE   $8457
+ DEC   $09
+ DEY 
+ CPY   #$FF
+ BNE   $845E
+ DEC   $09
+ LDA   ($08),Y
+ BMI   $8463
+ BPL $846F
+ DEY
+ CPY   #$FF
+ BNE   $846B
+ DEC   $09
+ LDA   ($08),Y
+ BPL   $8463
+ TYA
+ CLD 
+ CLC
+ ADC   $08
+ STA   $06
+ LDA   $09
+ ADC   #$00
+ STA   $07
+ PLA
+ STA   $09
+ PLA
+ STA   $08
+ TYA
+ CLC
+ ADC $08
+ STA $08
+ LDA #$00
+ ADC $09
+ STA $09
+ JMP   $840E
+
+8400G
+FB7:0 0
+
