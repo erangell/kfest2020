@@ -162,8 +162,8 @@
  INC 9
  DEX
  BNE 86C6
+ LDA #$A2
+ JSR $FDED
  LDA #$A0
  JSR $FDED
  JMP 8675 
-
- 
