@@ -140,4 +140,28 @@
  CMP  #$14
  BEQ  $86AA 
  JMP  8667
- BRK
+ LDY #2
+ LDA (8),Y
+ TAX
+ JSR FDDA
+ LDA #$A0 
+ JSR FDED
+ CLC
+ LDA 8
+ ADC #3
+ STA 8
+ LDA 9
+ ADC #0
+ STA 9
+ LDY #$0
+ LDA (8),Y
+ ORA #$80
+ JSR $FDED
+ INC 8
+ BNE 86D3
+ INC 9
+ DEX
+ BNE 86C6
+ JMP 8675 
+
+ 
