@@ -133,5 +133,11 @@
  LDA  $07
  CMP  #$43
  BEQ  $8650
+ LDA  $06
+ CMP  #$74
+ BNE  $86A7 
+ LDA  $07
+ CMP  #$14
+ BEQ  $86AA 
  JMP  8667
-
+ BRK
