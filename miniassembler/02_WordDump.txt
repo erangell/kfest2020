@@ -29,6 +29,15 @@ AF7:86
  INY
  LDA(6),Y
  STA $09 
+ LDA #$A0 
+ JSR $FDED 
+ INY
+ INY 
+ LDA (6),Y
+ JSR $FDDA
+ DEY
+ LDA (6),Y
+ JSR $FDDA
  LDA #$8D 
  JSR $FDED 
  LDA $09 
