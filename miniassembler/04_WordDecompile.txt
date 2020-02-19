@@ -1,4 +1,12 @@
 !
+84EF:INY
+ LDA(6),Y
+ JSR $FDDA
+ DEY
+ LDA(6),Y
+ JSR $FDDA
+ LDA   #$8D
+ JMP   $FDED
 8500:CLD
  LDY   #$00
  LDA   ($06),Y
@@ -23,13 +31,13 @@
  INY
  LDA   ($06),Y
  CMP   #$BE
- BEQ   $852F
- BRK
+ BNE   $84EF
+ NOP
  INY
  LDA   ($06),Y
  CMP   #$0E
- BEQ   $8537
- BRK
+ BNE   $84F0
+ NOP
  INY
  TYA
  CLC
@@ -54,12 +62,50 @@
  LDA   #$8D
  JSR   $FDED
  RTS
+85B0:LDA 6
+ CMP #1D
+ BNE 860E
+ LDA 7
+ CMP #13
+ BNE 860E
+ CLC
+ LDA 8
+ ADC #2
+ STA 8
+ LDA 9
+ ADC #0
+ STA 9
+ LDY #0
+ LDA(8),Y
+ STA 6
+ INY
+ LDA (8),Y
+ STA 7
+ JSR 8300
+ LDA #$A0
+ JSR $FDED
+ CLC
+ LDA 8
+ ADC #2
+ STA 8
+ LDA 9
+ ADC #0
+ STA 9
+ CLC
+ RTS
+85F0:LDA 6
+ CMP #90
+ BNE 85B0
+ LDA 7
+ CMP #13
+ BNE 85B0
+ BEQ 860C
 8600:LDA   $06
  CMP  #$37
- BNE  860E
+ BNE  85F0
  LDA  $07
  CMP  #$0C
- BNE  860E
+ BNE  85F0
  SEC
  RTS
  LDA   $06

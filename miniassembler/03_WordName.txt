@@ -16,7 +16,7 @@
  STA 7
  PLA
  STA 6
- BRK
+ RTS
  LDA6
  SEC
  SBC#1
