@@ -1,0 +1,227 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1561\cocoasubrtf610
+{\fonttbl\f0\fmodern\fcharset0 Courier;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c0;}
+\margl1440\margr1440\vieww9680\viewh15700\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs32 \cf0 EXAMPLE: REBUILDING SOURCE CODE FOR SOUND ROUTINES\
+\pard\pardeftab720\sl360\partightenfactor0
+\cf2 \expnd0\expndtw0\kerning0
+================================================================\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 \kerning1\expnd0\expndtw0 \
+\pard\pardeftab720\sl360\partightenfactor0
+\cf2 \expnd0\expndtw0\kerning0
+HEX\
+8 OBJECT SWEEP\
+  BOT LDA,\
+  8 PARM STA,\
+  BOT 1+ LDA,\
+  7 PARM STA,\
+  BOT 2 + LDA,\
+  6 PARM STA,\
+  BOT 3 + LDA,\
+  5 PARM STA,\
+  BOT 4 + LDA,\
+  4 PARM STA,\
+  BOT 5 + LDA,\
+  3 PARM STA,\
+  BOT 6 + LDA,\
+  2 PARM STA,\
+  BOT 7 + LDA,\
+  1 PARM STA,\
+  INX, INX, INX, INX, INX, INX, INX, INX, \
+OBJ-CODE\
+  8 PARM LDA,\
+  8 PARM 80 + STA,\
+  7 PARM LDA,\
+  8 PARM 81 + STA,\
+  6 PARM LDA,\
+  8 PARM 60 + STA,\
+  5 PARM LDA,\
+  8 PARM 61 + STA,\
+  0 # LDX,\
+  DEY,\
+  D0 C, 0C C,\
+  2 PARM LDY,\
+  4 PARM INC,\
+  FFFF LDA,\
+  8 PARM 71 + JMP,\
+  8 PARM LDA,\
+  8 PARM INC,\
+  EEEE LDA,\
+  8 PARM 71 + JMP,\
+  DEX,\
+  D0 C, 11 C,\
+  4 PARM LDX,\
+  2 PARM DEC,\
+  D0 C, 03 C,\
+  8 PARM 96 + JMP,\
+  BBBB LDA,\
+  8 PARM 93 + JMP,\
+  8 PARM LDA,\
+  8 PARM DEC,\
+  D0 C, 00 C,\
+  AAAA LDA,\
+  8 PARM 93 + JMP,\
+  8 PARM 56 + JMP,\
+OBJ-END\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 \kerning1\expnd0\expndtw0 \
+\pard\pardeftab720\sl360\partightenfactor0
+\cf2 \expnd0\expndtw0\kerning0
+================================================================\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 \kerning1\expnd0\expndtw0 \
+DEC\
+\
+0 4 -16336 -1 SWEEP\
+0 16 -16336 -1 SWEEP\
+0 32 -16336 -1 SWEEP\
+0 4 -1 -16336 SWEEP\
+0 16 -1 -16336  SWEEP\
+0 32 -1 -16336  SWEEP\
+\
+\pard\pardeftab720\sl360\partightenfactor0
+\cf2 \expnd0\expndtw0\kerning0
+================================================================\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 \kerning1\expnd0\expndtw0 \
+HEX\
+C030 CONSTANT CLICKER\cf2 \expnd0\expndtw0\kerning0
+\
+\pard\pardeftab720\sl360\partightenfactor0
+\cf2 : CLICK 0 0 CLICKER C! CLICKER C! ;\
+: GLICK 0 CLICKER C! ;\
+\
+================================================================\
+: TEST1 100 0 DO CLICK LOOP ;\
+TEST1\
+\
+: TEST2 200 0 DO GLICK LOOP ;\
+TEST2\
+\
+TEST1 TEST2 TEST1 TEST2\
+\
+================================================================\
+\
+: OSC ( FREQ \'97 ) \
+  0 DO GLICK \
+    DUP 0 GLICK DO LOOP\
+  LOOP DROP ;\
+: OSC/2 ( FREQ \'97 )\
+  0 DO GLICK \
+    DUP 0 DO LOOP\
+  LOOP DROP ;\
+\
+================================================================\
+10 100 OSC\
+20 50 OSC\
+30 50 OSC\
+40 50 OSC\
+10 50 OSC/2\
+20 50 OSC/2\
+30 50 OSC/2\
+\
+================================================================\
+\
+: PAUSE 0177 0 DO LOOP ;\
+: CLACK 000A 0004 OSC/2 ;\
+: CLUCK 1 4 OSC 003C 0 DO LOOP\
+  5 4 OSC ;\
+\
+================================================================\
+CLACK\
+\
+CLUCK\
+\
+CLACK CLUCK CLACK CLUCK\
+================================================================\
+\
+VARIABLE MUFF 8 MUFF !\
+\
+: UP- CLICKER -1 ;\
+: DWN- -1 CLICKER ;\
+\
+: SOUND\
+  DUP MUFF @ < IF\
+  0 SWAP DUP\
+  CASE \
+  0 OF\
+    07 EMIT ENDOF\
+  1 OF\
+    CLUCK 1+ ENDOF\
+  2 OF\
+    CLACK 1+ ENDOF\
+  3 OF\
+    0 2 UP- SWEEP ENDOF\
+  4 OF \
+    46 1 UP- SWEEP ENDOF  \
+  5 OF\
+    0 2 DWN- SWEEP ENDOF\
+  6 OF\
+    05 14 OSC ENDOF \
+  7 OF \
+    05 14 OSC \
+    PAUSE CLUCK 1+ 1+ ENDOF \
+  ENDCASE\
+  DROP   \
+ENDIF  \
+DROP\
+;\
+\
+\
+================================================================\
+\
+8 MUFF !\
+0 SOUND\
+1 SOUND\
+2 SOUND\
+3 SOUND\
+4 SOUND\
+5 SOUND\
+6 SOUND\
+7 SOUND\
+\
+\
+6 MUFF !\
+0 SOUND\
+1 SOUND\
+2 SOUND\
+3 SOUND\
+4 SOUND\
+5 SOUND\
+6 SOUND\
+7 SOUND\
+\
+\
+3 MUFF !\
+0 SOUND\
+1 SOUND\
+2 SOUND\
+3 SOUND\
+4 SOUND\
+5 SOUND\
+6 SOUND\
+7 SOUND\
+\
+================================================================\
+8 MUFF !\
+\
+: HI 3 SOUND 5 SOUND ;\
+: HO 5 SOUND 3 SOUND ;\
+\
+HI\
+\
+HO\
+\
+HI HO HI HO\
+================================================================\
+\
+SAVE\'94 JOTSOUND.EXE\'94\
+BASIC\
+CAT\
+-JOTSOUND.EXE\
+WORDS\
+}
