@@ -2,7 +2,7 @@
 {\fonttbl\f0\fmodern\fcharset0 Courier;}
 {\colortbl;\red255\green255\blue255;\red0\green0\blue0;}
 {\*\expandedcolortbl;;\cssrgb\c0\c0\c0;}
-\margl1440\margr1440\vieww9680\viewh15700\viewkind0
+\margl1440\margr1440\vieww28600\viewh18000\viewkind0
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 
 \f0\fs32 \cf0 EXAMPLE: REBUILDING SOURCE CODE FOR SOUND ROUTINES\
@@ -10,7 +10,8 @@
 \cf2 \expnd0\expndtw0\kerning0
 ================================================================\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
-\cf0 \kerning1\expnd0\expndtw0 \
+\cf0 \kerning1\expnd0\expndtw0 (CODE, TEST, CODE, TEST, RINSE, REPEAT)\
+\
 \pard\pardeftab720\sl360\partightenfactor0
 \cf2 \expnd0\expndtw0\kerning0
 HEX\
@@ -206,8 +207,17 @@ DROP\
 6 SOUND\
 7 SOUND\
 \
+9999 MUFF !\
+0 SOUND\
+1 SOUND\
+2 SOUND\
+3 SOUND\
+4 SOUND\
+5 SOUND\
+6 SOUND\
+7 SOUND\
+\
 ================================================================\
-8 MUFF !\
 \
 : HI 3 SOUND 5 SOUND ;\
 : HO 5 SOUND 3 SOUND ;\
@@ -219,9 +229,15 @@ HO\
 HI HO HI HO\
 ================================================================\
 \
+TO SAVE YOUR WORK:\
+------------------\
 SAVE\'94 JOTSOUND.EXE\'94\
 BASIC\
 CAT\
+\
+TO RELOAD YOUR IMAGE WITH YOUR SAVED WORDS:\
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
 -JOTSOUND.EXE\
 WORDS\
+\
 }
