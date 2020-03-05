@@ -17,5 +17,5 @@ https://archive.org/details/TNM_infotronic_eltro_information_rate_changer
 * https://archive.org/details/d122s2-mad-apple-forth
 * https://archive.org/details/d122s1-mad-apple-forth
 * https://archive.org/details/d312s1-mad-apple-forth
-For additional resources, see: https://github.com/erangell/VCFEast2020
+* For additional resources, see: https://github.com/erangell/VCFEast2020
 
