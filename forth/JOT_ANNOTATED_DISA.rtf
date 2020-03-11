@@ -3,7 +3,7 @@
 \f3\froman\fcharset0 Times-Roman;}
 {\colortbl;\red255\green255\blue255;\red0\green0\blue0;}
 {\*\expandedcolortbl;;\cssrgb\c0\c0\c0;}
-\margl1440\margr1440\vieww28600\viewh16580\viewkind0
+\margl1440\margr1440\vieww12140\viewh16580\viewkind0
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 
 \f0\fs24 \cf0 ANNOTATED DISASSEMBLY OF JOT\
@@ -199,9 +199,11 @@ CH @ SWAP CURS-CHV @ CHV! \
 COUNT TYPE CHV! \
 ;S\
 \
-7B9C : BLACK-CURS 13DA \\does>\
+7B9C : BLACK-CURS 13DA \\ DOES> 451E =  :" \
+01 20 20 20 20 20\
 \
-7B85 : WHITE-CURS 13DA \\does>\
+7B85 : WHITE-CURS 13DA \\ DOES> 451E =  :"\
+01 20 20 20 20 20\
 \
 7B76 : ECHO-PTR 0F21\
 \
@@ -424,7 +426,7 @@ CH \
 \
 756E : ROLLPAPER 0F21\
 \
-74DC : PR-BUF 13DA\
+74DC : PR-BUF 13DA \\ DOES> 4E88 = CARRAY\
 \
 74D0 : PAGE# 0F21\
 \
@@ -514,7 +516,7 @@ DROP \uc0\u32 \u769 MODE @ 3 + MODETAB @ \
 DUP \uc0\u32 \u769 MODE ! ABS 0 SOUNDS \
 ;S\
 \
-7273 : MODETAB 13DA\
+7273 : MODETAB 13DA  \\ DOES> 4E11 = ARRAY\
 \
 7254 : LETTER \
 LEVEL @ 0= 0BRANCH 0008 \
@@ -1001,7 +1003,7 @@ LIT 0040 < EH?> 0BRANCH 000C \
 \
 652F : PUNKED 0F21		\\ variable $0000\
 \
-64E1 : (PUNCT) 13DA	\\ DOES> 4E11 - ARRAY\
+64E1 : (PUNCT) 13DA	\\ DOES> 4E11 = ARRAY\
 \
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
 
@@ -1021,7 +1023,7 @@ LIT 0040 < EH?> 0BRANCH 000C \
 \
 \pard\pardeftab720\sl360\partightenfactor0
 \cf2 \
-63D6 : KEYT 13DA		\\ DOES> 4E11 - ARRAY\
+63D6 : KEYT 13DA		\\ DOES> 4E11 = ARRAY\
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
 
 \f2\fs22 \cf0 \kerning1\expnd0\expndtw0 \
@@ -1420,7 +1422,7 @@ SAVETURNKEY \
 \
 59D0 : SIZE DUP LIT 0004 + @ B/BUF * SWAP @ - ;S\
 \
-592B : SLURP-BUFFER 13DA		\\ DOES> CSTACK\
+592B : SLURP-BUFFER 13DA		\\ DOES> 562E = CSTACK\
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
 
 \f2\fs22 \cf0 \kerning1\expnd0\expndtw0 593C- 2E 56 00 00\
@@ -1446,7 +1448,7 @@ SAVETURNKEY \
 
 \f1\fs32 \cf2 \expnd0\expndtw0\kerning0
 \
-588C : BOTTOM 13DA				\\ DOES> CSTACK\
+588C : BOTTOM 13DA				\\ DOES> 562E = CSTACK\
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
 
 \f2\fs22 \cf0 \kerning1\expnd0\expndtw0 5897- 2E\
@@ -1473,7 +1475,7 @@ SAVETURNKEY \
 \
 \pard\pardeftab720\sl360\partightenfactor0
 \cf2 \
-57E6 : DELETE-BUFFER 13DA		\\ DOES> CSTACK
+57E6 : DELETE-BUFFER 13DA		\\ DOES> 562E = CSTACK
 \f2\fs22 \cf0 \kerning1\expnd0\expndtw0 \
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
 \cf0 57F8- 2E 56 FD 03 00 00 01 00\
@@ -1499,7 +1501,7 @@ SAVETURNKEY \
 
 \f1\fs32 \cf2 \expnd0\expndtw0\kerning0
 \
-574A : TOP 13DA				\\ DOES> CSTACK\
+574A : TOP 13DA				\\ DOES> 562E = CSTACK\
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
 
 \f2\fs22 \cf0 \kerning1\expnd0\expndtw0 5752- 2E 56 = CSTACK - does nothing (\'93Character stack?\'94)\
@@ -1559,7 +1561,7 @@ SAVETURNKEY \
 55EA : "-> 0F05		\\ CONSTANT $0015	(CTRL-U)\
 55E0 : "<- 0F05		\\ CONSTANT	$0008	(CTRL-H)\
 \
-55CB : TYPE-SP 13DA	\\ DOES>
+55CB : TYPE-SP 13DA	\\ DOES> 550C = CTABLE
 \f2\fs22 \cf0 \kerning1\expnd0\expndtw0 \
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
 \cf0 55D7- 0C\
@@ -1674,7 +1676,7 @@ DUP 0 < OVER DISKMAX @ > OR 0BRANCH 0015\
 QUIT \
 ;S\
 \
-4E8C : BLK-TAB 13DA\
+4E8C : BLK-TAB 13DA  \\ DOES> 4E11 = ARRAY\
 \
 4E77 : CARRAY <BUILDS ALLOT DOES> + ;S\
 \
@@ -1780,10 +1782,22 @@ SE ! OFFSET @ R - SWAP 0BRANCH 000A + 1 BRANCH 0006 DROP 0 R> OFFSET! ;S\
 46B5 : IN-LIST 0 LPAR SAME-WORD 0BRANCH 001E -BL RPAR SAME-WORD 0= 0BRANCH 0012\
 HERE SAME-WORD 0BRANCH 0006 DROP 1 BRANCH FFE6 ;S\
 \
-46A7 : RPAR 13DA\
+46A7 : RPAR 13DA \\ DOES> 451E = :"\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f2\fs22 \cf0 \kerning1\expnd0\expndtw0 46B2- 02 29 20 \
+\pard\pardeftab720\sl360\partightenfactor0
+
+\f1\fs32 \cf2 \expnd0\expndtw0\kerning0
 \
-4699 : LPAR 13DA\
+4699 : LPAR 13DA \\ DOES> 451E = :"\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f2\fs22 \cf0 \kerning1\expnd0\expndtw0 46A4- 02 28 20 
+\f1\fs32 \cf2 \expnd0\expndtw0\kerning0
 \
+\pard\pardeftab720\sl360\partightenfactor0
+\cf2 \
 467B : -BL NEXTCHAR BL = 0BRANCH FFF8 NEXTCHAR BL - 0BRANCH FFF8 ;S\
 \
 4661 : SAME-WORD COUNT LOOKPTR @ -TEXT 0= ;S\
@@ -1934,7 +1948,8 @@ CR LIT 0020 0 (DO) \
 \
 3B96 : EDIT EDIT ;S\
 \
-342A : EDITOR 13DA		\\ DOES> (vocabulary)\
+342A : EDITOR 13DA		\\ DOES> 197E = VOCABULARY\
+\
 \
 341A : MON LIT FF69 CALL ;S\
 \
@@ -2098,7 +2113,7 @@ OP ;S\
 \
 3169 : CODE ?EXEC CREATE SMUDGE ASSEMBLER MEM !CSP LATEST PFA DUP 2 - ! ;S\
 \
-2B78 : ASSEMBLER 13DA		\\ DOES>\
+2B78 : ASSEMBLER 13DA		\\ DOES> 197E = VOCABULARY\
 \
 2B65 : RAND URAND U* SWAP DROP ;S\
 \
@@ -2531,7 +2546,7 @@ D LIT 03F4 C! JOT BRANCH FFFC ;S\
 \f1\fs32 \cf2 \expnd0\expndtw0\kerning0
 \
 \pard\pardeftab720\sl360\partightenfactor0
-\cf2 1986 : FORTH 13DA		\\ DOES>\
+\cf2 1986 : FORTH 13DA		\\ DOES> 197E = VOCABULARY\
 \
 1951 : VOCABULARY <BUILDS LIT A081 , CURRENT @ CFA , HERE VOC-LINK @ , VOC-LINK\
 ! DOES> 2+ CONTEXT ! ;S\
