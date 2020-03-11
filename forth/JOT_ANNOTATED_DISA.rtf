@@ -200,9 +200,11 @@ COUNT TYPE CHV! \
 ;S\
 \
 7B9C : BLACK-CURS 13DA \\ DOES> 451E =  :" \
+\
 01 20 20 20 20 20\
 \
 7B85 : WHITE-CURS 13DA \\ DOES> 451E =  :"\
+\
 01 20 20 20 20 20\
 \
 7B76 : ECHO-PTR 0F21\
@@ -427,7 +429,30 @@ CH \
 756E : ROLLPAPER 0F21\
 \
 74DC : PR-BUF 13DA \\ DOES> 4E88 = CARRAY\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f2\fs22 \cf0 \kerning1\expnd0\expndtw0 \
+74E9-    20 20 20 20 20 20 20\
+74F0- 20 20 20 20 20 20 20 20\
+74F8- 20 20 20 20 20 20 50 61\
+7500- 72 65 6E 74 27 73 2E 31\
+7508- 32 35 20 46 38 32 2E 36\
+7510- 35 2E 6E 67 69 6E 65 65\
+7518- 72 2E 65 63 74 20 6F 6E\
+7520- 20 49 74 74 79 20 42 69\
+7528- 74 74 79 20 4D 61 63 68\
+7530- 69 6E 65 20 43 6F 6D 70\
+7538- 61 6E 79 2E 6E 20 36 20\
+7540- 28 74 65 6C 65 70 68 0F\
+7548- 01 00 83 43 4F CC 3A 75\
+7550- BE 0E F2 73 C1 0D D0 11\
+7558- 32 09 0C 00 9E 08 F8 05\
+7560- E1 0C 13 09 04 00 89 52\
+7568- 4F 4C 4C 50 41 50 
+\f1\fs32 \cf2 \expnd0\expndtw0\kerning0
 \
+\pard\pardeftab720\sl360\partightenfactor0
+\cf2 \
 74D0 : PAGE# 0F21\
 \
 74C2 : BOTMARG 0F21\
@@ -517,6 +542,14 @@ DUP \uc0\u32 \u769 MODE ! ABS 0 SOUNDS \
 ;S\
 \
 7273 : MODETAB 13DA  \\ DOES> 4E11 = ARRAY\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f2\fs22 \cf0 \kerning1\expnd0\expndtw0 \
+7281-    01 00 FD FF 03 00 00\
+7288- 00 FE FF FF FF 02 00\
+\pard\pardeftab720\sl360\partightenfactor0
+
+\f1\fs32 \cf2 \expnd0\expndtw0\kerning0
 \
 7254 : LETTER \
 LEVEL @ 0= 0BRANCH 0008 \
@@ -1425,7 +1458,8 @@ SAVETURNKEY \
 592B : SLURP-BUFFER 13DA		\\ DOES> 562E = CSTACK\
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
 
-\f2\fs22 \cf0 \kerning1\expnd0\expndtw0 593C- 2E 56 00 00\
+\f2\fs22 \cf0 \kerning1\expnd0\expndtw0 \
+593C- 2E 56 00 00\
 5940- 00 00 00 00 20 20 20 20\
 5948- 20 20 20 20 20 00 00 00\
 5950- 00 00 00 00 00 00 00 00\
@@ -1451,7 +1485,8 @@ SAVETURNKEY \
 588C : BOTTOM 13DA				\\ DOES> 562E = CSTACK\
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
 
-\f2\fs22 \cf0 \kerning1\expnd0\expndtw0 5897- 2E\
+\f2\fs22 \cf0 \kerning1\expnd0\expndtw0 \
+5897- 2E\
 5898- 56 33 00 00 00 02 00 26\
 58A0- 25 7B 7C 7D 7E 7F 80 81\
 58A8- 86 89 82 83 87 85 84 00\
@@ -1478,7 +1513,8 @@ SAVETURNKEY \
 57E6 : DELETE-BUFFER 13DA		\\ DOES> 562E = CSTACK
 \f2\fs22 \cf0 \kerning1\expnd0\expndtw0 \
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
-\cf0 57F8- 2E 56 FD 03 00 00 01 00\
+\cf0 \
+57F8- 2E 56 FD 03 00 00 01 00\
 5800- 6D 20 20 20 20 20 20 20\
 5808- 00 00 00 00 00 00 00 00\
 5810- 00 00 00 00 00 00 00 00\
@@ -1504,7 +1540,8 @@ SAVETURNKEY \
 574A : TOP 13DA				\\ DOES> 562E = CSTACK\
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
 
-\f2\fs22 \cf0 \kerning1\expnd0\expndtw0 5752- 2E 56 = CSTACK - does nothing (\'93Character stack?\'94)\
+\f2\fs22 \cf0 \kerning1\expnd0\expndtw0 \
+5752- 2E 56 = CSTACK - does nothing (\'93Character stack?\'94)\
 5754- FF 03 00 00\
 5758- 01 00 24 84 85 87 83 82\
 5760- 89 86 81 80 7F 7E 7D 7C\
@@ -1564,7 +1601,8 @@ SAVETURNKEY \
 55CB : TYPE-SP 13DA	\\ DOES> 550C = CTABLE
 \f2\fs22 \cf0 \kerning1\expnd0\expndtw0 \
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
-\cf0 55D7- 0C\
+\cf0 \
+55D7- 0C\
 55D8- 55 22 55 00 80 90 A0 F0\
 \pard\pardeftab720\sl360\partightenfactor0
 
@@ -1676,9 +1714,87 @@ DUP 0 < OVER DISKMAX @ > OR 0BRANCH 0015\
 QUIT \
 ;S\
 \
-4E8C : BLK-TAB 13DA  \\ DOES> 4E11 = ARRAY\
+4E8C : BLK-TAB 13DA  \\ DOES> 4E11 = ARRAY
+\f2\fs22 \cf0 \kerning1\expnd0\expndtw0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+\cf0 \
+4E9A-       30 B0 2C AC 28 A8\
+4EA0- 24 A4 20 A0 1C 9C 18 98\
+4EA8- 14 94 10 90 0C 8C 08 88\
+4EB0- 04 84 30 B0 2C AC 28 A8\
+4EB8- 24 A4 20 A0 1C 9C 18 98\
+4EC0- 14 94 10 90 0C 8C 08 88\
+4EC8- 04 84 30 B0 2C AC 28 A8\
+4ED0- 24 A4 20 A0 1C 9C 18 98\
+4ED8- 14 94 10 90 0C 8C 08 88\
+4EE0- 28 A8 30 B0 2C AC 28 A8\
+4EE8- 24 A4 20 A0 1C 9C 18 98\
+4EF0- 14 94 10 90 0C 8C 08 88\
+4EF8- 04 84 30 B0 2C AC 28 A8\
+4F00- 24 A4 20 A0 1C 9C 18 98\
+4F08- 14 94 10 90 0C 8C 08 88\
+4F10- 04 84 30 B0 2C AC 28 A8\
+4F18- 24 A4 20 A0 1C 9C 18 98\
+4F20- 14 94 10 90 0C 8C 08 88\
+4F28- 04 84 30 B0 2C AC 28 A8\
+4F30- 24 A4 20 A0 1C 9C 18 98\
+4F38- 14 94 10 90 0C 8C 08 88\
+4F40- 04 84 30 B0 2C AC 28 A8\
+4F48- 24 A4 20 A0 1C 9C 18 98\
+4F50- 14 94 10 90 0C 8C 08 88\
+4F58- 04 84 30 B0 2C AC 28 A8\
+4F60- 24 A4 20 A0 1C 9C 18 98\
+4F68- 14 94 10 90 0C 8C 08 88\
+4F70- 04 84 30 B0 2C AC 28 A8\
+4F78- 24 A4 20 A0 1C 9C 18 98\
+4F80- 14 94 10 90 0C 8C 08 88\
+4F88- 04 84 30 B0 2C AC 28 A8\
+4F90- 24 A4 20 A0 1C 9C 18 98\
+4F98- 14 94 10 90 0C 8C 08 88\
+4FA0- 04 84 30 B0 2C AC 28 A8\
+4FA8- 24 A4 20 A0 1C 9C 18 98\
+4FB0- 14 94 30 B0 2C AC 28 A8\
+4FB8- 24 A4 20 A0 1C 9C 18 98\
+4FC0- 14 94 10 90 0C 8C 08 88\
+4FC8- 04 84 30 B0 2C AC 28 A8\
+4FD0- 24 A4 20 A0 1C 9C 18 98\
+4FD8- 14 94 10 90 0C 8C 08 88\
+4FE0- 04 84 30 B0 2C AC 28 A8\
+4FE8- 24 A4 20 A0 1C 9C 18 98\
+4FF0- 14 94 10 90 0C 8C 08 88\
+4FF8- 04 84 30 B0 2C AC 28 A8\
+5000- 24 A4 20 A0 1C 9C 18 98\
+5008- 14 94 10 90 0C 8C 08 88\
+5010- 04 84 30 B0 2C AC 28 A8\
+5018- 24 A4 20 A0 1C 9C 18 98\
+5020- 14 94 10 90 0C 8C 08 88\
+5028- 04 84 30 B0 2C AC 28 A8\
+5030- 24 A4 20 A0 1C 9C 18 98\
+5038- 14 94 10 90 0C 8C 08 88\
+5040- 04 84 30 B0 2C AC 28 A8\
+5048- 24 A4 20 A0 1C 9C 18 98\
+5050- 14 94 10 90 0C 8C 08 88\
+5058- 04 84 30 B0 2C AC 28 A8\
+5060- 24 A4 20 A0 1C 9C 18 98\
+5068- 14 94 10 90 0C 8C 08 88\
+5070- 04 84 30 B0 2C AC 28 A8\
+5078- 24 A4 20 A0 1C 9C 18 98\
+5080- 14 94 10 90 0C 8C 08 88\
+5088- 04 84 30 B0 2C AC 28 A8\
+5090- 24 A4 20 A0 1C 9C 18 98\
+5098- 14 94 10 90 0C 8C 08 88\
+50A0- 04 84 30 B0 2C AC 28 A8\
+50A8- 24 A4 20 A0 1C 9C 18 98\
+50B0- 14 94 10 90 0C 8C 08 88\
+50B8- 04 84 30 B0 2C AC 28 A8\
+50C0- 24 A4 20 A0 1C 9C 18 98\
+50C8- 14 94\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f1\fs32 \cf2 \expnd0\expndtw0\kerning0
 \
-4E77 : CARRAY <BUILDS ALLOT DOES> + ;S\
+\pard\pardeftab720\sl360\partightenfactor0
+\cf2 4E77 : CARRAY <BUILDS ALLOT DOES> + ;S\
 \
 4E62 : STUFFS (\uc0\u32 \u769 ) ROT ROT (STUFFS) ;S\
 \
@@ -1704,9 +1820,9 @@ GRAB , BRANCH FFCE \
 DROP R> DROP \
 ;S\
  
-\f3\fs24 \
+\f3\fs24 \cf2 \
 
-\f1\fs32 4D70 : CGRAB R> R C@ R> 1+ >R SWAP >R ;S\
+\f1\fs32 \cf2 4D70 : CGRAB R> R C@ R> 1+ >R SWAP >R ;S\
 \
 4D55 : GRAB R> R @ R> 2+ >R SWAP >R ;S\
 \pard\pardeftab720\sl360\sa240\partightenfactor0
@@ -1785,7 +1901,8 @@ HERE SAME-WORD 0BRANCH 0006 DROP 1 BRANCH FFE6 ;S\
 46A7 : RPAR 13DA \\ DOES> 451E = :"\
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
 
-\f2\fs22 \cf0 \kerning1\expnd0\expndtw0 46B2- 02 29 20 \
+\f2\fs22 \cf0 \kerning1\expnd0\expndtw0 \
+46B2- 02 29 20 \
 \pard\pardeftab720\sl360\partightenfactor0
 
 \f1\fs32 \cf2 \expnd0\expndtw0\kerning0
@@ -1793,7 +1910,8 @@ HERE SAME-WORD 0BRANCH 0006 DROP 1 BRANCH FFE6 ;S\
 4699 : LPAR 13DA \\ DOES> 451E = :"\
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
 
-\f2\fs22 \cf0 \kerning1\expnd0\expndtw0 46A4- 02 28 20 
+\f2\fs22 \cf0 \kerning1\expnd0\expndtw0 \
+46A4- 02 28 20 
 \f1\fs32 \cf2 \expnd0\expndtw0\kerning0
 \
 \pard\pardeftab720\sl360\partightenfactor0
@@ -1949,7 +2067,6 @@ CR LIT 0020 0 (DO) \
 3B96 : EDIT EDIT ;S\
 \
 342A : EDITOR 13DA		\\ DOES> 197E = VOCABULARY\
-\
 \
 341A : MON LIT FF69 CALL ;S\
 \
@@ -2150,9 +2267,9 @@ CR (.") 0B INSERT DISK" \
 KEY DROP \
 SAVESYSTEM BRANCH FFE8 \
 ;S 
-\f3\fs24 \
+\f3\fs24 \cf2 \
 
-\f1\fs32 \
+\f1\fs32 \cf2 \
 2927 : &KA 0F05	\\ constant $000A\
 \
 290F : &VRD 2918
@@ -2671,7 +2788,8 @@ DROP \
 13C6 : DOES> R> LATEST PFA ! (;CODE)
 \f2\fs22 \cf0 \kerning1\expnd0\expndtw0 \
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
-\cf0 13DA-   A5 DA       LDA   $DA\
+\cf0 \
+13DA-   A5 DA       LDA   $DA\
 13DC-   48          PHA\
 13DD-   A5 D9       LDA   $D9\
 13DF-   48          PHA\
@@ -4011,6 +4129,9 @@ EXAMPLE:\
 0818- 1F 00 00 00 38 27 9B 81\
 0820- F2 60 04 84 34 B4 04 84\
 0828- 04 84 28 00 00 00 00 00\
+\
+\
+\
 \
 \pard\pardeftab720\sl360\partightenfactor0
 
