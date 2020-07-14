@@ -17,5 +17,6 @@ https://archive.org/details/TNM_infotronic_eltro_information_rate_changer
 * https://archive.org/details/d122s2-mad-apple-forth
 * https://archive.org/details/d122s1-mad-apple-forth
 * https://archive.org/details/d312s1-mad-apple-forth
+* Demo of Forth MIDI Music system: https://www.youtube.com/watch?v=1-SI7h5Dx4w&feature=youtu.be
 * For additional resources, see: https://github.com/erangell/VCFEast2020
 
