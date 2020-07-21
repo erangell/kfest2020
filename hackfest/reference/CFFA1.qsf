@@ -1,0 +1,68 @@
+# Copyright (C) 1991-2006 Altera Corporation
+# Your use of Altera Corporation's design tools, logic functions 
+# and other software and tools, and its AMPP partner logic 
+# functions, and any output files any of the foregoing 
+# (including device programming or simulation files), and any 
+# associated documentation or information are expressly subject 
+# to the terms and conditions of the Altera Program License 
+# Subscription Agreement, Altera MegaCore Function License 
+# Agreement, or other applicable license agreement, including, 
+# without limitation, that your use is for the sole purpose of 
+# programming logic devices manufactured by Altera and sold by 
+# Altera or its authorized distributors.  Please refer to the 
+# applicable agreement for further details.
+
+
+# The default values for assignments are stored in the file
+#		CFFA1_assignment_defaults.qdf
+# If this file doesn't exist, and for assignments not listed, see file
+#		assignment_defaults.qdf
+
+# Altera recommends that you do not modify this file. This
+# file is updated automatically by the Quartus II software
+# and any changes you make may be lost or overwritten.
+
+
+set_global_assignment -name FAMILY MAX7000S
+set_global_assignment -name DEVICE "EPM7032STC44-10"
+set_global_assignment -name TOP_LEVEL_ENTITY CFFA1
+set_global_assignment -name ORIGINAL_QUARTUS_VERSION "6.0 SP1"
+set_global_assignment -name PROJECT_CREATION_TIME_DATE "22:55:25  JULY 21, 2006"
+set_global_assignment -name LAST_QUARTUS_VERSION "6.0 SP1"
+set_global_assignment -name AHDL_FILE CFFA1.tdf
+set_global_assignment -name BDF_FILE CFFA1.bdf
+set_global_assignment -name DEVICE_FILTER_PACKAGE TQFP
+set_global_assignment -name DEVICE_FILTER_PIN_COUNT 44
+set_global_assignment -name DEVICE_FILTER_SPEED_GRADE 10
+set_location_assignment PIN_2 -to A13
+set_location_assignment PIN_3 -to A12
+set_location_assignment PIN_5 -to A11
+set_location_assignment PIN_6 -to A10
+set_location_assignment PIN_8 -to A9
+set_location_assignment PIN_10 -to A8
+set_location_assignment PIN_11 -to A7
+set_location_assignment PIN_12 -to A6
+set_location_assignment PIN_13 -to A1
+set_location_assignment PIN_14 -to A2
+set_location_assignment PIN_15 -to A3
+set_location_assignment PIN_21 -to /SRAM_CE
+set_location_assignment PIN_22 -to /CF_CS0
+set_location_assignment PIN_18 -to DBUS245
+set_location_assignment PIN_28 -to LA2
+set_location_assignment PIN_30 -to LA1
+set_location_assignment PIN_31 -to LA0
+set_location_assignment PIN_33 -to /EEPROM_WE
+set_location_assignment PIN_34 -to /EEPROM_CE
+set_location_assignment PIN_35 -to /EEPROM_OE
+set_location_assignment PIN_37 -to PH2
+set_location_assignment PIN_38 -to R/W
+set_location_assignment PIN_40 -to S
+set_location_assignment PIN_42 -to A0
+set_location_assignment PIN_43 -to A15
+set_location_assignment PIN_44 -to A14
+set_location_assignment PIN_39 -to A5
+set_location_assignment PIN_23 -to /CF_CS1
+set_location_assignment PIN_27 -to /CF_IOWR
+set_location_assignment PIN_25 -to /CS_IORD
+set_location_assignment PIN_20 -to Replica1
+set_location_assignment PIN_19 -to User

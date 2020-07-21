@@ -1,0 +1,22 @@
+//
+// iNet API
+//
+import iNet
+struc t_inet
+    word initIP
+    word serviceIP
+    word openUDP
+    word sendUDP
+    word closeUDP
+    word listenTCP
+    word connectTCP
+    word sendTCP
+    word closeTCP
+    word setInterfaceIP
+    word getInterfaceHA
+    word setDNS
+    word resolveIP
+    word setCallback
+    word setParam
+end
+end

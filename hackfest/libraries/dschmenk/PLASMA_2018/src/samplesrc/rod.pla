@@ -1,0 +1,41 @@
+include "inc/cmdsys.plh"
+include "inc/conio.plh"
+//
+// Rod's Colors
+//
+def rod
+  var i, j, k, w, fmi, fmk, color
+
+  while TRUE
+    for w = 3 to 50
+      for i = 1 to 19
+        for j = 0 to 19
+          k = i + j
+          color = (j * 3) / (i + 3) + i * w / 12
+          fmi = 40 - i
+          fmk = 40 - k
+          conio:grcolor(color)
+          conio:grplot(i, k)
+          conio:grplot(k, i)
+          conio:grplot(fmi, fmk)
+          conio:grplot(fmk, fmi)
+          conio:grplot(k, fmi)
+          conio:grplot(fmi, k)
+          conio:grplot(i, fmk)
+          conio:grplot(fmk, i)
+          if conio:keypressed()
+            return getc
+          fin
+        next
+      next
+    next
+  loop
+end
+
+conio:grmode(TRUE)
+conio:gotoxy(11, 1)
+puts("Press any key to exit.")
+rod
+conio:textmode(40)
+puts("That's all, folks!\n")
+done

@@ -1,0 +1,138 @@
+001 ;      *** APPLE 1 KARAOKE ***
+002 ;
+003 ;      BY ERIC RANGELL
+004 ;
+005 ;      A HACKFEST PROJECT FOR
+006 ;      KANSASFEST 2020, JULY 17-24
+007 ;
+008 ENTRY  .M  $0280
+009        JMP MAIN
+00A        JSR TSTKEY
+00B        RTS
+00C GETKEY BIT $D011
+00D        BPL GETKEY
+00E        LDA $D010
+00F        RTS
+010 OUTDSP BIT $D012
+011        BMI OUTDSP
+012        STA $D012
+013        RTS
+014 TSTKEY LDA #'*'
+015        JSR OUTDSP
+016        JSR GETKEY
+017        JSR OUTDSP
+018        RTS
+019 DRWBAR LDA #'='
+01A        LDX #$28
+01B DRWBA1 JSR OUTDSP
+01C        DEX
+01D        BNE DRWBA1
+01E        RTS
+01F PRTCR  LDA #$0D
+020 PRTCR1 JSR OUTDSP
+021        DEY
+022        BNE PRTCR1
+023        RTS
+024 ;
+025 VRTBAR .=  $7C
+026 UMLAT  .=  $7B
+027 TRINGL .=  $7E
+028 BALL   .=  $7D
+029 ;
+02A SPLASH .B  VRTBAR
+02B        .S  '.........'
+02C        .S  '..........'
+02D        .S  '..........'
+02E        .S  '.........'
+02F        .B  VRTBAR
+030        .B  VRTBAR
+031        .S  '...A.....'
+032        .S  '..........'
+033        .S  'LL........'
+034        .S  '....1....'
+035        .B  VRTBAR
+036        .B  VRTBAR
+037        .S  '..A.A....'
+038        .S  '..........'
+039        .S  '.L........'
+03A        .S  '...11....'
+03B        .B  VRTBAR
+03C        .B  VRTBAR
+03D        .S  '.A...A...'
+03E        .S  '..........'
+03F        .S  '.L....EE..'
+040        .S  '..1.1....'
+041        .B  VRTBAR
+042        .B  VRTBAR
+043        .S  '.A...A...'
+044        .S  'PP....PP..'
+045        .S  '.L...E..E.'
+046        .S  '....1....'
+047        .B  VRTBAR
+048        .B  VRTBAR
+
+etc..
+
+0B5        .B  UMLAT
+0B6        .S  '.'
+0B7        .B  VRTBAR
+0B8        .B  VRTBAR
+0B9        .S  'K..K..AAA'
+0BA        .S  'A.R.....AA'
+0BB        .S  'AA..AA..K.'
+0BC        .S  '.........'
+0BD        .B  VRTBAR
+0BE        .B  VRTBAR
+0BF        .S  '.........'
+0C0        .S  '..........'
+0C1        .S  '..........'
+0C2        .S  '.........'
+0C3        .B  VRTBAR
+0C4        .S  '=========='
+0C5        .S  '=========='
+0C6        .S  '=========='
+0C7        .S  '=========='
+0C8        .S  'CODE.BY.ER'
+0C9        .S  'IC..MUSIC.'
+0CA        .S  'BY.MELODY.'
+0CB        .S  '.KFEST2020'
+
+0CA ;
+0CB DRWSPL LDA #$0D
+0CC        JSR $FFEF
+0CD        LDA #<SPLASH
+0CE        STA $06
+0CF        LDA #>SPLASH
+0D0        STA $07
+0D1 SPLOOP LDA ($06),Y
+0D2        JSR $FFEF
+0D3        INY
+0D4        BNE SPLOOP
+0D5        INC $07
+0D6        RTS
+0D7 MAIN   JSR DRWSPL
+0D8        RTS
+?
+
+
+
+
+
+
+
+024 MAIN   .M
+025        LDY #$01
+026        JSR PRTCR
+027        JSR DRWBAR
+028        LDY #$09
+029        JSR PRTCR
+02A        JSR DRWBAR
+02B        LDY #$09
+02C        JSR PRTCR
+02D        JSR DRWBAR
+02E MAINLP JSR GETKEY
+02F        JSR OUTDSP
+030        JMP MAINLP
+
+
+

@@ -1,0 +1,334 @@
+include "inc/cmdsys.plh"
+//
+// CFFA1 addresses.
+//
+const CFFA1Dest     = $00
+const CFFA1FileName = $02
+const CFFA1OldName  = $04
+const CFFA1FileType = $06
+const CFFA1AuxType  = $07
+const CFFA1FileSize = $09
+const CFFA1EntryPtr = $0B
+//
+// SOS access modes
+//
+const O_READ       = 1
+const O_WRITE      = 2
+const O_READ_WRITE = 3
+//
+// System I/O buffer for PLASMA. Used when loading modules, free otherwise
+//
+const sysbuf = $0800
+//
+// External interface
+//
+struc t_fileio
+    word getpfx
+    word setpfx
+    word getfileinfo
+    word geteof
+    word openbuf
+    word open
+    word close
+    word read
+    word write
+    word create
+    word destroy
+    word newline
+    word readblock
+    word writeblock
+end
+predef a2getpfx(path), a23setpfx(path), a2getfileinfo(path, fileinfo), a23geteof(refnum), a2openbuf(path, iobuf), a2open(path), a23close(refnum)
+predef a23read(refnum, buf, len), a2write(refnum, buf, len), a2create(path, type, aux), a23destroy(path)
+predef a23newline(refnum, emask, nlchar), a2readblock(unit, buf, block), a2writeblock(unit, buf, block)
+//
+// Exported function table.
+//
+word fileio[]
+word = @a2getpfx, @a23setpfx, @a2getfileinfo, @a23geteof, @a2openbuf, @a2open, @a23close
+word = @a23read, @a2write, @a2create, @a23destroy
+word = @a23newline, @a2readblock, @a2writeblock
+//
+// SOS/ProDOS error code
+//
+export byte perr
+//
+// ProDOS/SOS routines
+//
+def a1getpfx(path)
+    ^path = 0
+    return path
+end
+def a2getpfx(path)
+    byte params[3]
+
+    ^path    = 0
+    params.0 = 1
+    params:1 = path
+    perr     = syscall($C7, @params)
+    return path
+end
+def a3getpfx(path)
+    byte params[3]
+
+    params.0 = 2
+    params:1 = path
+    params.3 = 64
+    perr     = syscall($C7, @params)
+    return path
+end
+def a1setpfx(path)
+    return path
+end
+def a23setpfx(path)
+    byte params[3]
+
+    params.0 = 1
+    params:1 = path
+    perr     = syscall($C6, @params)
+    return path
+end
+def a1getfileinfo(path, fileinfo)
+    perr = $01
+    return perr
+end
+def a2getfileinfo(path, fileinfo)
+    byte params[18]
+
+    params.0 = 10
+    params:1 = path
+    perr     = syscall($C4, @params)
+    memcpy(fileinfo, @params + 3, 15)
+    return perr
+end
+def a3getfileinfo(path, fileinfo)
+    byte params[6]
+
+    params.0 = 3
+    params:1 = path
+    params:3 = fileinfo
+    params.5 = 15
+    perr     = syscall($C4, @params)
+    return perr
+end
+def a1geteof(refnum)
+    return 0
+end
+def a23geteof(refnum)
+    byte params[6]
+
+    params.0 = 2
+    params.1 = refnum
+    params:2 = 0
+    params:4 = 0
+    syscall($D1, @params)
+    return params:2
+end
+def a1open(path)
+    *CFFA1FileName = path
+    return 0
+end
+def a2openbuf(path, iobuf)
+    byte params[6]
+    params.0 = 3
+    params:1 = path
+    params:3 = iobuf
+    params.5 = 0
+    perr     = syscall($C8, @params)
+    return params.5
+end
+def a2open(path)
+    byte params[6]
+    params.0 = 3
+    params:1 = path
+    params:3 = sysbuf
+    params.5 = 0
+    perr     = syscall($C8, @params)
+    return params.5
+end
+def a3openbuf(path, iobuf)
+    byte params[7]
+
+    params.0 = 4
+    params:1 = path
+    params.3 = 0
+    params:4 = iobuf
+    params.6 = 0
+    perr = syscall($C8, @params)
+    return params.3
+end
+def a3open(path)
+    byte params[7]
+
+    params.0 = 4
+    params:1 = path
+    params.3 = 0
+    params:4 = 0
+    params.6 = 0
+    perr = syscall($C8, @params)
+    return params.3
+end
+def a1close(refnum)
+    return perr
+end
+def a23close(refnum)
+    byte params[2]
+
+    params.0 = 1
+    params.1 = refnum
+    perr     = syscall($CC, @params)
+    return perr
+end
+def a1read(refnum, buf, len)
+    *CFFA1Dest = buf
+    perr = syscall($22, 0) // This reads the entire file from CFFA
+    return perr
+end
+def a23read(refnum, buf, len)
+    byte params[8]
+
+    params.0 = 4
+    params.1 = refnum
+    params:2 = buf
+    params:4 = len
+    params:6 = 0
+    perr     = syscall($CA, @params)
+    return params:6
+end
+def a1write(refnum, buf, len)
+    return perr
+end
+def a2write(refnum, buf, len)
+    byte params[8]
+
+    params.0 = 4
+    params.1 = refnum
+    params:2 = buf
+    params:4 = len
+    params:6 = 0
+    perr     = syscall($CB, @params)
+    return params:6
+end
+def a3write(refnum, buff, len)
+    byte params[6]
+
+    params.0 = 3
+    params.1 = refnum
+    params:2 = buff
+    params:4 = len
+    perr     = syscall($CB, @params)
+    return perr
+end
+def a1create(path, type, aux)
+    return perr
+end
+def a2create(path, type, aux)
+    byte params[12]
+
+    params.0  = 7
+    params:1  = path
+    params.3  = $C3
+    params.4  = type
+    params:5  = aux
+    params.7  = $1
+    params:8  = 0
+    params:10 = 0
+    perr      = syscall($C0, @params)
+    return perr
+end
+def a3create(path, type, aux)
+    byte params[6]
+    byte options[4]
+
+    params.0  = 3
+    params:1  = path
+    params:3  = @options
+    params.5  = 3
+    options.0 = type
+    options:1 = aux
+    perr      = syscall($C0, @params)
+    return perr
+end
+def a1destroy(path)
+    return perr
+end
+def a23destroy(path)
+    byte params[3]
+
+    params.0 = 1
+    params:1 = path
+    perr     = syscall($C1, @params)
+    return perr
+end
+def a1newline(refnum, emask, nlchar)
+    return perr
+end
+def a23newline(refnum, emask, nlchar)
+    byte params[4]
+
+    params.0 = 3
+    params.1 = refnum
+    params.2 = emask
+    params.3 = nlchar
+    perr     = syscall($C9, @params)
+    return perr
+end
+def a13readblock(unit, buf, block)
+    perr = $27  // IOERR
+    return perr
+end
+def a2readblock(unit, buf, block)
+    byte params[6]
+
+    params.0 = 3
+    params.1 = unit
+    params:2 = buf
+    params:4 = block
+    perr     = syscall($80, @params)
+    return perr
+end
+def a13writeblock(unit, buf, block)
+    perr = $27  // IOERR
+    return perr
+end
+def a2writeblock(unit, buf, block)
+    byte params[6]
+
+    params.0 = 3
+    params.1 = unit
+    params:2 = buf
+    params:4 = block
+    perr     = syscall($81, @params)
+    return perr
+end
+//
+// Machine specific initialization.
+//
+when MACHID & $C8
+    is $08 // Apple 1
+        fileio:getpfx      = @a1getpfx
+        fileio:setpfx      = @a1setpfx
+        fileio:getfileinfo = @a1getfileinfo
+        fileio:geteof      = @a1geteof
+        fileio:open        = @a1open
+        fileio:close       = @a1close
+        fileio:read        = @a1read
+        fileio:write       = @a1write
+        fileio:create      = @a1create
+        fileio:destroy     = @a1destroy
+        fileio:newline     = @a1newline
+        fileio:readblock   = @a13readblock
+        fileio:writeblock  = @a13writeblock
+        break
+    is $C0 // Apple ///
+        fileio:getpfx      = @a3getpfx
+        fileio:getfileinfo = @a3getfileinfo
+        fileio:open        = @a3open
+        fileio:write       = @a3write
+        fileio:create      = @a3create
+        fileio:readblock   = @a13readblock
+        fileio:writeblock  = @a13writeblock
+        break
+    otherwise // Apple ][
+wend
+done

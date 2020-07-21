@@ -1,0 +1,14 @@
+import memmgr
+    //
+    // Utility routine
+    //
+    predef sweep#0, brk(addr), sbrk(size)
+    //
+    // Memory routines
+    //
+    predef hmemNew(size), hmemLock(hmem), hmemUnlock(hmem)#0, hmemRef(hmem)#0, hmemDel(hmem)#0, hmemFre(lptr)
+    //
+    // Max size of a memory block
+    //
+    const MAX_MEMBLK_SIZE = $2000
+end

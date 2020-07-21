@@ -1,0 +1,200 @@
+//
+// Include all imported modules and their data/functions.
+//
+include "inc/cmdsys.plh"
+include "inc/testlib.plh"
+//
+// Structure definition.
+//
+struc mystruc
+  byte cmd
+  word param
+  byte[3]
+  word data
+end
+//
+// Const expression
+//
+const constval = 2*(2+3) // a test expression should evaluate to 10
+//
+// Declare all global variables for this module.
+// Note that arrays are declared with prefix []. postfix [], or no [].
+// Only arrays with predclared sizes need [ and ], such as "int[3] a".
+//
+byte[] hello = "Hello, Apple "
+byte[] a1 = "1"
+byte[] a2 = "]["
+byte[] a2p = "][+"
+byte[] a2e = "//e"
+byte[] a2c = "//c"
+byte[] a3 = "///"
+byte   constr = "Constant expression = "
+byte[] offsets = "Structure offsets:"
+word array[] = 1, 10, 100, 1000, 10000
+word ptr
+//
+// Define functions.
+//
+def tens(start)#0
+  word i, pptr
+
+  i = start
+  pptr = @print
+  repeat
+    print:hex(i)#0
+    print:str("   ")#0
+    pptr=>dec(i)#0
+    print:newln()#0
+    i = i / 10
+  until i == 0
+end
+def ascii#0
+  byte i
+  i = 32
+  while i < 128
+    putc(i)
+    i = i + 1
+  loop
+end
+def nums(range)#0
+  word i
+  byte j
+  for i = range downto -range step range/10
+    puti(i)
+    putln
+  next
+  puti(array[0]);putln
+  puti(array[1]);putln
+  i++
+  j = 2
+  j++
+  array[1]++
+  array[0] = array[0] + 1
+  array++
+  a1[0]++
+  a1++
+  puti(array[0]);putln
+  puti(array[1]);putln
+end
+def printfunc(a, b, lambda)#0
+  puts("func(a,b)=")
+  puti(lambda(a,b))
+  putln
+end
+def vals123#3
+  return 1, 2, 3
+end
+export def main(range)#0
+  byte a, b, c
+  word lambda
+
+  a = 10
+  nums(*range)
+  tens(*range*10)
+  ascii
+  putln
+  puts("10 * 8 = "); puti(a * 8); putln
+  puts("10 / 2 = "); puti(a / 2); putln
+  puts(@hello)
+  when MACHID & $C8
+    is $08
+      puts(@a1)
+      break
+    is $00
+      puts(@a2)
+      break
+    is $40
+      puts(@a2p)
+      break
+    is $80
+      puts(@a2e)
+      break
+    is $88
+      puts(@a2c)
+      break
+    is $C0
+      puts(@a3)
+      break
+    otherwise
+      putc('?')
+  wend
+  putln
+  printfunc(1, 2, &(a,b) a+b)
+  printfunc(1, 2, &(a,b) (a-b))
+  lambda = &(x,y) x * y
+  puti(lambda(2,3));putln
+  a             = vals123
+  drop, b, drop = vals123
+  drop, drop, c = vals123
+  puts("a, b, c = "); puti(a); puts(", "); puti(b); puts(", "); puti(c); putln
+end
+
+def dummy(zz)#2
+  puts("dummy func"); putln
+  return 0
+end
+
+def value1
+    return 1
+end
+
+puti(array[0]);putc(' ')
+puti(array[1]);putc(' ')
+puti(array[2]);putc(' ')
+puti(array[3]);putc(' ')
+puti(array[4]);putln
+puti((@array)=>0);putc(' ')
+puti((@array)=>2);putc(' ')
+puti((@array)=>4);putc(' ')
+puti((@array)=>6);putc(' ')
+puti((@array)=>8);putln
+ptr = @main
+ptr(@array:6)#0
+ptr = @array
+puti((ptr):6)
+putln
+puti(ptr=>6)
+putln
+puti((ptr).6)
+putln
+puti(ptr->6)
+putln
+puts(@offsets)
+putln
+puti(cmd)
+putln
+puti(param)
+putln
+puti(data)
+putln
+puti(mystruc)
+putln
+puts(@constr); puti(constval); putln
+puts("Signed byte constant:"); puti(-3); putln
+puts("Hello from in-line string!\$7F\n")
+puti(array:0); puts(" == "); puti(array:1); puts (" is ")
+puts(array:0 == array:1 ?? "TRUE\n" :: "FALSE\n")
+puti(array:0); puts(" <> "); puti(array:1); puts (" is ")
+puts(array:0 <> array:1 ?? "TRUE\n" :: "FALSE\n")
+puti(array:0); puts(" >= "); puti(array:1); puts (" is ")
+puts(array:0 >= array:1 ?? "TRUE\n" :: "FALSE\n")
+puti(array:0); puts(" <= "); puti(array:1); puts (" is ")
+puts(array:0 <= array:1 ?? "TRUE\n" :: "FALSE\n")
+puti(array:0); puts(" >  "); puti(array:1); puts (" is ")
+puts(array:0 >  array:1 ?? "TRUE\n" :: "FALSE\n")
+puti(array:0); puts(" <  "); puti(array:1); puts (" is ")
+puts(array:0 <  array:1 ?? "TRUE\n" :: "FALSE\n")
+puti(array:0); puts(" == "); puti(array:0); puts (" is ")
+puts(array:0 == array:0 ?? "TRUE\n" :: "FALSE\n")
+puti(array:0); puts(" <> "); puti(array:0); puts (" is ")
+puts(array:0 <> array:0 ?? "TRUE\n" :: "FALSE\n")
+puti(array:0); puts(" >= "); puti(array:0); puts (" is ")
+puts(array:0 >= array:0 ?? "TRUE\n" :: "FALSE\n")
+puti(array:0); puts(" <= "); puti(array:0); puts (" is ")
+puts(array:0 <= array:0 ?? "TRUE\n" :: "FALSE\n")
+puti(array:0); puts(" >  "); puti(array:0); puts (" is ")
+puts(array:0 >  array:0 ?? "TRUE\n" :: "FALSE\n")
+puti(array:0); puts(" <  "); puti(array:0); puts (" is ")
+puts(array:0 <  array:0 ?? "TRUE\n" :: "FALSE\n")
+ptr = 0
+done

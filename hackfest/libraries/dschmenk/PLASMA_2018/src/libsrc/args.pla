@@ -1,0 +1,32 @@
+include "inc/cmdsys.plh"
+
+def argDelim(str)
+    byte n
+    
+    // Skip leading spaces
+     while ^str and ^(str + 1) == ' '
+        ^(str + 1) = ^str - 1
+        str++
+    loop
+    // Scan to trailing spaces (if any)
+    for n = 1 to ^str
+        if ^(str + n) <= ' '
+            ^(str + n) = ^str - n
+            ^str       = n - 1
+            break
+        fin
+    next
+    return str
+end
+
+export def argNext(str)
+    str = str + ^str + 1
+    return argDelim(str)
+end
+
+export def argFirst
+    ^(cmdsys:cmdline + ^cmdsys:cmdline + 1) = NULL
+    return argDelim(cmdsys:cmdline)
+end
+
+done

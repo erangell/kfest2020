@@ -1,0 +1,368 @@
+/* Bootstrap 3 complementary styles */
+/* For SB-Projects.net */
+
+/* Make the fixed top and bottom navbar the same with as the container */
+.navbar-center {
+	margin-right: auto;
+	margin-left: auto;
+}
+
+@media (min-width: 768px) {
+	.navbar-center {
+		width: 750px;
+	}
+}
+
+@media (min-width: 992px) {
+	.navbar-center {
+		width: 970px;
+	}
+}
+
+@media (min-width: 1200px) {
+	.navbar-center {
+		width: 1170px;
+	}
+}
+
+
+/* Make some vertical room for the top and bottom nav bars in the body */
+body {
+	padding-top: 60px;
+	padding-bottom: 50px;
+}
+
+
+/* Prevent navbar to collapse when screen becomes too small*/
+
+@media (max-width: 767px) {
+	.navbar-nav-nocollapse {
+		float: left;
+		margin: 0;
+	}
+
+	.navbar-nav-nocollapse > li {
+		float: left;
+	}
+
+	.navbar-nav-nocollapse > li > a {
+		padding-top: 15px;
+		padding-bottom: 15px;
+	}
+}
+
+
+@media (max-width: 767px) {
+	.navbar-nav {
+		position: relative;
+		float: right;
+		width: auto;
+	}
+}
+
+
+.navbar-header {
+	float: left;
+}
+
+
+.navbar-footer {
+	height: 35px;
+	min-height: 35px;
+}
+
+
+/* Make my brand bold and big and avoid padding in between top menu bar */
+.mybrand {
+	font-weight: bold;
+	font-size: 25px;
+	padding-right: 0px;
+}
+
+
+/* Avoid padding in between top menu bar */
+.navmenu {
+	padding-left: 0px;
+}
+
+
+/* Center last updated column */
+.lastupdate {
+	text-align: center;
+	padding-top: 7px;
+	padding-bottom:0px;
+}
+
+.lastupdate > a {
+	color: #000;
+	text-decoration: none;
+}
+
+.lastupdate > a:hover {
+	color: #fff;
+}
+
+.navbar-nav>li>a.vcenter {
+	padding-top: 7px;
+	padding-bottom: 0px;
+}
+
+
+/* Put buttons a little closer together on a narrow screen */
+@media (max-width: 767px) {
+.navbar-nav>li>a {
+	padding-left: 10px;
+	padding-right: 10px;
+}
+}
+
+
+/* Corrections needed for the drop down button */
+.drop-btn {
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+
+.btn-link > drop-btn {
+	color: #000;
+}
+
+.drop-btn > a:hover {
+	color: #fff;
+}
+
+
+/* Make the ads column a fixed width */
+.col-ads {
+	width: 140px;
+	padding-left: 10px;
+	padding-top: 00px;
+	height: 100%;
+}
+
+@media (min-width: 768px) {
+.col-article {
+	width: 608px;
+}
+}
+
+@media (min-width: 992px) {
+.col-article {
+	width: 830px;
+}
+}
+
+@media (min-width: 1200px) {
+.col-article {
+	width: 1030px;
+}
+}
+
+
+/* Some default style elements */
+h2 {
+	font-weight: bold;
+}
+h4 {
+	margin-top: 25px;
+}
+
+.extraindent {
+	margin-left: 15px;
+}
+
+hr {
+	border-color: #000;
+}
+
+
+.nowrap {
+	white-space: nowrap;
+}
+
+thead {
+	font-weight: bold;
+}
+
+.t_indent {
+	margin-left: 25px;
+	width: 95%;
+}
+
+@media (max-width: 768px) {
+.t_indent {
+	margin-left: 15px;
+}
+}
+
+/* Placing images */
+.img-left {
+	max-width: 100%;
+	height: auto;
+	border: 0px;
+	float: left;
+	margin-right: 10px;
+	margin-bottom: 5px;
+}
+
+.img-right {
+	max-width: 100%;
+	height: auto;
+	border: 0px;
+	float: right;
+	margin-left: 10px;
+	margin-bottom: 5px;
+}
+
+.img-center {
+	max-width: 100%;
+	height: auto;
+	border: 0px;
+	text-align: center;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.img-thumbnail {
+	border: 0px;
+}
+
+
+/* Inline code */
+.inline-code {
+	font-family: monospace;
+	color: #009000;
+	white-space: nowrap;
+}
+
+.inline-code-wrap {
+	font-family: monospace;
+	color: #009000;
+}
+
+
+/* Mono space styles */
+.pre-big {
+	font-size: 16px;
+}
+
+
+/* Tile related styles */
+.tile-title {
+	background-color: #ded;
+	padding-left: 20px;
+	padding-top: 7px;
+	padding-bottom: 7px;
+}
+
+
+/* Styles for file format descriptions */
+.ff-bc {
+	color: #cc0000;
+}
+
+.ff-cs {
+	color: #ff9900;
+}
+
+.ff-ad {
+	color: #3333ff;
+}
+
+.ff-da {
+	color: #00cc00;
+}
+
+.ff-flg {
+	color: #000;;
+}
+
+
+.logic-not {
+	text-decoration: overline;
+}
+
+/* ----------------------------------------------- */
+
+/* Setup the color scheme */
+/* https://work.smarchal.com/twbscolor/css/e74c3cc0392becf0f1ffbbbc0 */
+
+.navbar-default {
+  background-color: #99cc99;
+  border-color: #99cc99;
+}
+.navbar-default .navbar-brand {
+  color: #000000;
+}
+.navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
+  color: #ffffff;
+}
+.navbar-default .navbar-text {
+  color: #000000;
+}
+.navbar-default .navbar-nav > li > a {
+  color: #000000;
+}
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+  color: #ffffff;
+}
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+  color: #ffffff;
+  background-color: #99cc99;
+}
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
+  color: #ffffff;
+  background-color: #99cc99;
+}
+.navbar-default .navbar-toggle {
+  border-color: #99cc99;
+}
+.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
+  background-color: #99cc99;
+}
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: #000000;
+}
+.navbar-default .navbar-collapse,
+.navbar-default .navbar-form {
+  border-color: #000000;
+}
+.navbar-default .navbar-link {
+  color: #000000;
+}
+.navbar-default .navbar-link:hover {
+  color: #ffffff;
+}
+
+@media (max-width: 767px) {
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+    color: #000000;
+  }
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+    color: #ffffff;
+  }
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
+    color: #ffffff;
+    background-color: #99cc99;
+  }
+}
+
+
+/* Disabled style button, must be defined last */
+.navbar-nav>li>a.disabled {
+	color: #888;
+}
+
+/* Make the dropdown index button text black */
+.navbar-default .btn-link {
+	color: #000;
+}
+
+.navbar-default:hover .btn-link:hover {
+	color: #fff;
+}
+
+pre {
+	color: #000;
+	border-radius: 10px;
+}

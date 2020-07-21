@@ -1,0 +1,104 @@
+%------------------------------------------------------------------------------
+ CompactFlash Interface for the Apple 1 computer
+ Project Home: http://dreher.net/CFforApple1/
+ Project Version 1.0   April, 2007
+
+ Version 0.8  -  Prototype 3: CF card in TrueIDE mode
+ Version 0.9  -  Production RevD: EEPROM was being selected at same time
+                 as CF card for CF addresses
+ Version 1.0  -  Initial Release                 
+
+-------------------------------------------------------------------------------%
+
+SUBDESIGN CFLogic
+(
+	A0, A1, A2, A3, A5, A6, A7, A8, A9  :INPUT;
+	A10, A11, A12, A13, A14, A15        :INPUT;
+	PH2, /EN_T, R/W, User, /Replica1    :INPUT;
+	
+	/SRAM_CE							              :OUTPUT;
+	/CF_CS0, /CF_CS1, /CF_IORD, /CF_IOWR:OUTPUT;
+	/EEPROM_WE, /EEPROM_CE, /EEPROM_OE	:OUTPUT;
+	LA0, LA1, LA2, /DBUS245				      :OUTPUT;
+)
+
+VARIABLE
+/EEAddr, /EEAuxAddr		                :NODE;
+/SRAMMainAddr, /SRAMAuxAddr	          :NODE;
+/CFAddresses							            :NODE;
+/RESET_MASK, /SET_MASK, CS_MASK       :NODE;
+LA3                                   :NODE;
+
+BEGIN
+
+%------------------------ 8K EEPROM Control logic -------------------------------%
+
+% EEPROM Address: 4K direct mapped to $9000 to $9FFF %
+ /EEAddr = !A15 # A14 # A13 # !A12 # !/CFAddresses;
+
+% EEPROM Address: 4K mapped to T select line at $A000 to $AFDF as long as Select
+  line T is connected to A on Apple1%
+% Note: The CF card is mapped into $AFF0-$AFFF and $AFE0-$AFEF (It is duplicated
+  twice because A4 is not available for address decode) %
+ /EEAuxAddr = /EN_T # (!A15 # A14 # !A13 # A12) # !/CFAddresses;
+ 
+% EEPROM Chip Enable %
+ /EEPROM_CE = (/EEAddr !$ /EEAuxAddr) # !PH2;
+
+ 
+% EEPROM Output Enable %
+ /EEPROM_OE = !R/W # /EEPROM_CE;
+ 
+% EEPROM Write Enable %
+ /EEPROM_WE  = R/W # /EEPROM_CE; 
+
+%------------------------- 32K SRAM Control logic -------------------------------%
+
+% 1) Decode SRAM address at: $1000 to $7FFF. Assumes there is 4K DRAM already on
+     board Apple 1 at $0000%
+% /Replica1 =0 to disable SRAM on CFFA1.%
+ /SRAMMainAddr = A15 # (!A14 & !A13 & !A12);
+
+% 2) Decode SRAM address at $8000 to $8FFF %
+ /SRAMAuxAddr = !A15 # A14 # A13 # A12;
+
+% If Replica1 then disable SRAM from $1000 to $7FFF. %
+% If Apple1   then  enable SRAM from $1000 to $7FFF. %
+% In both Apple1 and Replica1 always map 4K sram at $8000 to $8FFF %
+ /SRAM_CE = ((/SRAMMainAddr  # !/Replica1) !$ /SRAMAuxAddr) # !PH2;
+
+% Pass Address line through, for now, unlatched %
+  LA0 = A0;
+  LA1 = A1;
+  LA2 = A2;
+  LA3 = A3;
+
+%------------------------------------------------------------------------------%
+% Fix for SanDisk Family of CompactFlash drives. True IDEmode is not quite     %
+% True! The idea here is to mask the read cycle that proceeds all write cycles %
+% because the read cycle was confusing the Sandisk                             %
+%------------------------------------------------------------------------------%
+% SetMask = $AFF1   %
+ /SET_MASK = /CFAddresses # (LA3 # LA2 # LA1 # !LA0);
+% ResetMask = $AFF2 %
+ /RESET_MASK = /CFAddresses # (LA3 # LA2 # !LA1 # LA0);
+  CS_MASK  = SRFF(!/SET_MASK, !/RESET_MASK, PH2, VCC, VCC);
+
+
+%----------------------------- CF Control logic ---------------------------------%
+% decode CF card address range at $nFF0 to $nFFF. Because Address lines A4 is not
+  available to this logic, the CF address space will repeat from nFE0-nFEF, where
+  n is the 4K space mapped to select line S  %
+ /CFAddresses = /EN_T  # !A11 # !A10 # !A9 # !A8 # !A7 # !A6 # !A5;
+
+% CF Chip Select0 line: addresses nFF8 to nFFF %
+ /CF_CS0 = /CFAddresses # !LA3 # (CS_MASK & R/W);
+% CF Chip Select1 line: addresses nFF6 to nFF7 %
+ /CF_CS1 = /CFAddresses # (LA3 # !(LA1 & LA2)) # (CS_MASK & R/W);
+
+ /CF_IORD  = !R/W # /CFAddresses # !PH2;
+ /CF_IOWR  =  R/W # /CFAddresses # !PH2;
+
+ /DBUS245 = /EEPROM_CE & /SRAM_CE & /CF_CS0 & /CF_CS1;
+
+END;

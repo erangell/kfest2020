@@ -1,0 +1,50 @@
+include "inc/cmdsys.plh"
+include "inc/memmgr.plh"
+word a, b, c, d, e, memptr
+word memfre, memlrgst
+
+sbrk($3000) // Set small pool size
+
+memfre=hmemFre(@memlrgst);puth(memfre); putc(' '); puth(memlrgst); putln
+a = hmemNew(MAX_MEMBLK_SIZE)
+b = hmemNew(MAX_MEMBLK_SIZE)
+c = hmemNew(MAX_MEMBLK_SIZE)
+
+d = hmemNew($1000)
+e = hmemNew(768)
+hmemLock(d)
+memptr = hmemLock(e)
+if memptr; *memptr = $EEEE; fin
+hmemUnlock(d)
+hmemUnlock(e)
+hmemDel(d)
+memfre=hmemFre(@memlrgst);puth(memfre); putc(' '); puth(memlrgst); putln
+
+memptr = hmemLock(a)
+if memptr; memset(memptr, $1111, MAX_MEMBLK_SIZE); fin
+hmemUnlock(a)
+memptr = hmemLock(b)
+if memptr; memset(memptr, $2222, MAX_MEMBLK_SIZE); fin
+hmemUnlock(b)
+memptr = hmemLock(c)
+if memptr; memset(memptr, $3333, MAX_MEMBLK_SIZE); fin
+hmemUnlock(c)
+memptr = hmemLock(a)
+if memptr; puth(a); putc('='); puth(*(memptr + MAX_MEMBLK_SIZE - 2)); putln; fin
+hmemUnlock(a)
+hmemDel(a)
+memptr = hmemLock(b)
+if memptr; puth(b); putc('='); puth(*(memptr + MAX_MEMBLK_SIZE - 2)); putln; fin
+hmemUnlock(b)
+hmemDel(b)
+memptr = hmemLock(c)
+if memptr; puth(c); putc('='); puth(*(memptr + MAX_MEMBLK_SIZE - 2)); putln; fin
+hmemUnlock(c)
+hmemDel(c)
+
+memptr = hmemLock(e)
+if memptr; puth(e); putc('='); puth(*memptr); putln; fin
+hmemUnlock(e)
+hmemDel(e)
+memfre=hmemFre(@memlrgst);puth(memfre); putc(' '); puth(memlrgst); putln
+done

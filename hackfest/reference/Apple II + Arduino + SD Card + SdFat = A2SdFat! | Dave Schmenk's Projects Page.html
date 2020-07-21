@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<!--[if IE 7]>
+<html class="ie ie7" lang="en-US">
+<![endif]-->
+<!--[if IE 8]>
+<html class="ie ie8" lang="en-US">
+<![endif]-->
+<!--[if !(IE 7) | !(IE 8) ]><!-->
+<html lang="en-US"><!--<![endif]--><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Apple II + Arduino + SD Card + SdFat = A2SdFat! | Dave Schmenk's Projects Page</title>
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+	<link rel="pingback" href="http://schmenk.is-a-geek.com/wordpress/xmlrpc.php">
+	<!--[if lt IE 9]>
+	<script src="http://schmenk.is-a-geek.com/wordpress/wp-content/themes/twentyfourteen/js/html5.js"></script>
+	<![endif]-->
+	<link rel="dns-prefetch" href="http://fonts.googleapis.com/">
+<link rel="dns-prefetch" href="http://s.w.org/">
+<link rel="alternate" type="application/rss+xml" title="Dave Schmenk's Projects Page » Feed" href="http://schmenk.is-a-geek.com/wordpress/?feed=rss2">
+<link rel="alternate" type="application/rss+xml" title="Dave Schmenk's Projects Page » Comments Feed" href="http://schmenk.is-a-geek.com/wordpress/?feed=comments-rss2">
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.2.1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.2.1\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/schmenk.is-a-geek.com\/wordpress\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.7.5"}};
+			!function(a,b,c){function d(a){var b,c,d,e,f=String.fromCharCode;if(!k||!k.fillText)return!1;switch(k.clearRect(0,0,j.width,j.height),k.textBaseline="top",k.font="600 32px Arial",a){case"flag":return k.fillText(f(55356,56826,55356,56819),0,0),!(j.toDataURL().length<3e3)&&(k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57331,65039,8205,55356,57096),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57331,55356,57096),0,0),c=j.toDataURL(),b!==c);case"emoji4":return k.fillText(f(55357,56425,55356,57341,8205,55357,56507),0,0),d=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55357,56425,55356,57341,55357,56507),0,0),e=j.toDataURL(),d!==e}return!1}function e(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i,j=b.createElement("canvas"),k=j.getContext&&j.getContext("2d");for(i=Array("flag","emoji4"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script><script src="Apple%20II%20+%20Arduino%20+%20SD%20Card%20+%20SdFat%20=%20A2SdFat!%20|%20Dave%20Schmenk's%20Projects%20Page_files/wp-emoji-release.js" type="text/javascript" defer="defer"></script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel="stylesheet" id="twentyfourteen-lato-css" href="Apple%20II%20+%20Arduino%20+%20SD%20Card%20+%20SdFat%20=%20A2SdFat!%20|%20Dave%20Schmenk's%20Projects%20Page_files/css.css" type="text/css" media="all">
+<link rel="stylesheet" id="genericons-css" href="Apple%20II%20+%20Arduino%20+%20SD%20Card%20+%20SdFat%20=%20A2SdFat!%20|%20Dave%20Schmenk's%20Projects%20Page_files/genericons.css" type="text/css" media="all">
+<link rel="stylesheet" id="twentyfourteen-style-css" href="Apple%20II%20+%20Arduino%20+%20SD%20Card%20+%20SdFat%20=%20A2SdFat!%20|%20Dave%20Schmenk's%20Projects%20Page_files/style.css" type="text/css" media="all">
+<!--[if lt IE 9]>
+<link rel='stylesheet' id='twentyfourteen-ie-css'  href='http://schmenk.is-a-geek.com/wordpress/wp-content/themes/twentyfourteen/css/ie.css?ver=20131205' type='text/css' media='all' />
+<![endif]-->
+<script type="text/javascript" src="Apple%20II%20+%20Arduino%20+%20SD%20Card%20+%20SdFat%20=%20A2SdFat!%20|%20Dave%20Schmenk's%20Projects%20Page_files/jquery.js"></script>
+<script type="text/javascript" src="Apple%20II%20+%20Arduino%20+%20SD%20Card%20+%20SdFat%20=%20A2SdFat!%20|%20Dave%20Schmenk's%20Projects%20Page_files/jquery-migrate.js"></script>
+<link rel="https://api.w.org/" href="http://schmenk.is-a-geek.com/wordpress/?rest_route=/">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://schmenk.is-a-geek.com/wordpress/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://schmenk.is-a-geek.com/wordpress/wp-includes/wlwmanifest.xml"> 
+<link rel="prev" title="Apple II, meet Arduino" href="http://schmenk.is-a-geek.com/wordpress/?p=233">
+<link rel="next" title="TFTP Server for Apple II" href="http://schmenk.is-a-geek.com/wordpress/?p=258">
+<meta name="generator" content="WordPress 4.7.5">
+<link rel="canonical" href="http://schmenk.is-a-geek.com/wordpress/?p=239">
+<link rel="shortlink" href="http://schmenk.is-a-geek.com/wordpress/?p=239">
+<link rel="alternate" type="application/json+oembed" href="http://schmenk.is-a-geek.com/wordpress/?rest_route=%2Foembed%2F1.0%2Fembed&amp;url=http%3A%2F%2Fschmenk.is-a-geek.com%2Fwordpress%2F%3Fp%3D239">
+<link rel="alternate" type="text/xml+oembed" href="http://schmenk.is-a-geek.com/wordpress/?rest_route=%2Foembed%2F1.0%2Fembed&amp;url=http%3A%2F%2Fschmenk.is-a-geek.com%2Fwordpress%2F%3Fp%3D239&amp;format=xml">
+</head>
+
+<body class="post-template-default single single-post postid-239 single-format-standard masthead-fixed full-width singular">
+<div id="page" class="hfeed site">
+	
+	<header id="masthead" class="site-header" role="banner">
+		<div class="header-main">
+			<h1 class="site-title"><a href="http://schmenk.is-a-geek.com/wordpress/" rel="home">Dave Schmenk's Projects Page</a></h1>
+
+			<div class="search-toggle">
+				<a href="#search-container" class="screen-reader-text">Search</a>
+			</div>
+
+			<nav id="primary-navigation" class="site-navigation primary-navigation" role="navigation">
+				<h1 class="menu-toggle">Primary Menu</h1>
+				<a class="screen-reader-text skip-link" href="#content">Skip to content</a>
+				<div class="nav-menu"><ul>
+<li class="page_item page-item-2"><a href="http://schmenk.is-a-geek.com/wordpress/?page_id=2">About</a></li>
+<li class="page_item page-item-45"><a href="http://schmenk.is-a-geek.com/wordpress/?page_id=45">Car Toys, Past and Present</a></li>
+</ul></div>
+			</nav>
+		</div>
+
+		<div id="search-container" class="search-box-wrapper hide">
+			<div class="search-box">
+				<form role="search" method="get" class="search-form" action="http://schmenk.is-a-geek.com/wordpress/">
+				<label>
+					<span class="screen-reader-text">Search for:</span>
+					<input type="search" class="search-field" placeholder="Search …" name="s">
+				</label>
+				<input type="submit" class="search-submit" value="Search">
+			</form>			</div>
+		</div>
+	</header><!-- #masthead -->
+
+	<div id="main" class="site-main">
+
+	<div id="primary" class="content-area">
+		<div id="content" class="site-content" role="main">
+			
+<article id="post-239" class="post-239 post type-post status-publish format-standard hentry category-apple-ii category-arduino category-hardware category-software">
+	
+	<header class="entry-header">
+				<div class="entry-meta">
+			<span class="cat-links"><a href="http://schmenk.is-a-geek.com/wordpress/?cat=9" rel="category">Apple II</a>, <a href="http://schmenk.is-a-geek.com/wordpress/?cat=11" rel="category">Arduino</a>, <a href="http://schmenk.is-a-geek.com/wordpress/?cat=8" rel="category">Hardware</a>, <a href="http://schmenk.is-a-geek.com/wordpress/?cat=7" rel="category">Software</a></span>
+		</div>
+		<h1 class="entry-title">Apple II + Arduino + SD Card + SdFat = A2SdFat!</h1>
+		<div class="entry-meta">
+			<span class="entry-date"><a href="http://schmenk.is-a-geek.com/wordpress/?p=239" rel="bookmark"><time class="entry-date" datetime="2016-08-18T10:13:59+00:00">August 18, 2016</time></a></span> <span class="byline"><span class="author vcard"><a class="url fn n" href="http://schmenk.is-a-geek.com/wordpress/?author=1" rel="author">dave</a></span></span>		</div><!-- .entry-meta -->
+	</header><!-- .entry-header -->
+
+		<div class="entry-content">
+		<h1>Doing Something Useful</h1>
+<p>After building the basic framework for interfacing the <a title="Apple II, meet Arduino" href="http://schmenk.is-a-geek.com/wordpress/?p=233" target="_blank">Apple II to an Arduino over the game port,</a> something useful had to be created with it. I had an Ethernet Shield lying around that also happens to have an SD card slot.</p>
+<div id="attachment_240" style="width: 310px" class="wp-caption aligncenter"><a href="http://schmenk.is-a-geek.com/wordpress/wp-content/uploads/2016/08/IMG_2330.jpg"><img class="size-medium wp-image-240" alt="Arduino with Ethernet and Proto Shields" src="Apple%20II%20+%20Arduino%20+%20SD%20Card%20+%20SdFat%20=%20A2SdFat!%20|%20Dave%20Schmenk's%20Projects%20Page_files/IMG_2330-300x225.jpg" srcset="http://schmenk.is-a-geek.com/wordpress/wp-content/uploads/2016/08/IMG_2330-300x225.jpg 300w, http://schmenk.is-a-geek.com/wordpress/wp-content/uploads/2016/08/IMG_2330.jpg 640w" sizes="(max-width: 300px) 100vw, 300px" width="300" height="225"></a><p class="wp-caption-text">Arduino with Ethernet and Proto Shields</p></div>
+<p>There are already plenty of Ethernet products available for the Apple
+ II, but few SD card options for transferring individual files. <a title="Floppy-Emu" href="http://www.bigmessowires.com/floppy-emu/" target="_blank">FloppyEmu</a>,
+ from Big-Mess-O-Wires is a great product and I highly recommend it, but
+ for my project I wanted something closer to a hardware version of <a title="Apple II CiderPress" href="http://a2ciderpress.com/" target="_blank">CiderPress</a>: the Apple disk image utility.</p>
+<p>I’ve worked on a similar project with <a title="Apple II SiDrive" href="http://schmenk.is-a-geek.com/wordpress/?p=205" target="_blank">Rodney Ross to bring the Apple II Pi’s virtual disk interface to the Super Serial Card</a> using an Atmel processor and the <a title="SdFat Library" href="https://github.com/greiman/SdFat" target="_blank">SdFat</a>
+ library. I thought I would take the same basic framework but create a 
+different use: interact directly with the &nbsp;FAT filesystem on the SD
+ card by way of the <a title="SdFat Library" href="https://github.com/greiman/SdFat" target="_blank">SdFat</a>
+ library. This wouldn’t be a virtual drive (that would be easy enough to
+ implement), but a direct interface to the FAT filesystem on an SD card.
+ Also, many new laptops come with an SD card reader built in, so it 
+makes for a great way to sneaker-net files back and forth. Both 
+individual files and floppy disk image files can be read and written to 
+Apple connected storage. ProDOS hard disks, CFFAs, and such can copy 
+files using the CiderPress file naming convention to retain the ProDOS 
+meta information. Floppy disk images can be read and written directly to
+ physical floppy drives. The challenge is to make the data transfer over
+ the game port fast enough to support copying large files back and 
+forth. Sound good? Want to build one yourself? Read on…</p>
+<h1>The Hardware</h1>
+<p>One of the goals when creating this project was to use easy-to-obtain
+ parts so that anyone with a little time could replicate the hardware 
+and software themselves. &nbsp;The parts list is nice and short:</p>
+<ol>
+<li>1 <a title="AdaFruit" href="https://www.adafruit.com/products/50" target="_blank">Arduino Uno</a></li>
+<li>1 <a title="AdaFruit" href="https://www.adafruit.com/products/1141" target="_blank">Logger Shield</a> or <a title="AdaFruit" href="https://www.adafruit.com/products/201" target="_blank">Ethernet Shield</a> + <a title="AdaFruit" href="https://www.adafruit.com/products/2077" target="_blank">Proto Shield</a></li>
+<li><a title="JameCo" href="https://www.jameco.com/z/28RC16-10VP-Cable-Ribbon-16-Conductor-Rainbow-28AWG-10-Feet-Flat_643532.html" target="_blank">16 wire Ribbon Cable</a></li>
+<li>2 <a title="JameCo" href="https://www.jameco.com/webapp/wcs/stores/servlet/ProductDisplay?catalogId=10001&amp;freeText=idc+16+pi+dip&amp;langId=-1&amp;productId=42674&amp;storeId=10001&amp;krypto=vFgRhKXJZKuM8sLfuPRmxrVULThlD5Fh&amp;ddkey=https:StoreCatalogDrillDownView" target="_blank">IDC 16 pin DIP Plug</a>s (for both ends of the ribbon cable)</li>
+<li>1 <a title="JameCo" href="https://www.jameco.com/z/ICS-316-T-Major-Brands-IC-Socket-16-Pin-Dual-Wipe-Low-Profile-0-3-Inch-Wide_112222.html" target="_blank">16 pin DIP Socket</a></li>
+<li>6 <a title="JameCo" href="https://www.jameco.com/z/K-MOWM-Velleman-24-AWG-10-Color-Solid-Tinned-Copper-Hook-Up-Wire-Assortment_2207751.html" target="_blank">Wire</a>s</li>
+<li>Optional – 1 <a title="JameCo" href="https://www.jameco.com/z/SS-12F56-4-Switch-Slide-Min-Single-Pole-Double-Throw-On-On-PCB-Mount-50-Volt-DC-0-5-Amps-Lead-4mm_109171.html" target="_blank">SPDT PCB Slide Switch</a> (II &amp; IIGS functionality)</li>
+</ol>
+<p>Along with a soldering iron and some solder, you will be good to go. You can see my build using the Proto Shield on my <a href="http://schmenk.is-a-geek.com/wordpress/?p=233" target="_blank">previous post</a>.
+ One modification I made was for the Apple IIgs, which lacks the $C040 
+Strobe signal, was to connect the AN2 pin as the SCLK signal. I used the
+ slide switch to select between the $C040 Strobe and AN2 going to the 
+Arduino’s Digital Pin 6. Using AN2 for the SCLK is slower than the $C040
+ Strobe, but the only option on the IIgs. Here is the pin connections I 
+use:</p>
+<pre> Apple II        Signal         Arduino
+ --------        ------         -------
+   AN0            MOSI        Digital Pin 8
+   AN1             SS         Digital Pin 3
+   PB0            MISO        Digital Pin 7
+
+Apple II/IIe     Signal         Arduino
+------------     ------         -------
+ C040 Strobe      SCK         Digital Pin 6  
+
+Apple IIgs       Signal         Arduino
+----------       ------         -------
+    AN2           SCK         Digital Pin 6</pre>
+<p>Apple II game port diagram is available from:</p>
+<p><a href="http://www.1000bit.it/support/manuali/apple/R023PINOUTS.TXT" target="_blank">http://www.1000bit.it/support/manuali/apple/R023PINOUTS.TXT</a></p>
+<p>Arduino Uno pin diagram is available from:</p>
+<p><a href="http://www.gammon.com.au/forum/?id=11473" target="_blank">http://www.gammon.com.au/forum/?id=11473</a></p>
+<h1>The Firmware</h1>
+<p>Once the hardware is connected (built seems a little extreme), the 
+software to give the Arduino its purpose needs to be programmed. Three 
+items need to be installed on your computer (modern, not retro):</p>
+<ol>
+<li><a title="Arduino IDE" href="https://www.arduino.cc/en/Main/Software" target="_blank">Arduino IDE</a></li>
+<li><a title="SdFat Library" href="https://github.com/greiman/SdFat" target="_blank">SdFat Library</a></li>
+<li><a title="AppleSlave Project" href="https://github.com/dschmenk/Arduino/tree/master/AppleSlave" target="_blank">AppleSlave Project</a></li>
+<li><a title="Real Time Clock Library" href="https://github.com/adafruit/RTClib" target="_blank">RTC Library (optional)</a></li>
+</ol>
+<p>The Arduino IDE will create a working directory for your projects. 
+Inside this directory, you should create a sub-directory called 
+AppleSlave and place the AppleSlave.ino file there. From the SdFat 
+download, move the SdFat/SdFat/ directory into the libraries/ directory 
+in your working Arduino directory. You should be able to load the 
+AppleSlave.ino project into the Arduino IDE and build it, bringing in 
+the SdFat library. Depending on which Arduino shield you are using for 
+the SD card interface, you may need to edit the AppleSlave source. Near 
+the top, you will find a line that looks like:</p>
+<pre>const int sdSSpin = 4;</pre>
+<p>This is the default when using the Ethernet Shield. If you have the 
+Logger Shield, this line should be changed to use 10 instead of 4. If 
+all is in the proper location, you should be able to plug the Arduino 
+into the computer with a USB cable, and build/upload.</p>
+<p>The current firmware is still a work in process. There are a few more
+ functions to implement, but it is enough to support the software below.</p>
+<h1>The Software</h1>
+<p>There are currently five basic utilities to interact with the files on an SD card.</p>
+<ul>
+<li>FATCAT – display catalog of SD card</li>
+<li>FATGET – get a file from the SD card</li>
+<li>FATPUT – put a file onto the SD card</li>
+<li>FATWRITEDSK – write an image on the SD card to floppy</li>
+<li>FATREADDSK – read a floppy to an image on the SD card</li>
+</ul>
+<p>These programs are written in <a title="PLASMA" href="https://github.com/dschmenk/PLASMA" target="_blank">PLASMA</a>,
+ a mid-level programming language developed for writing new applications
+ using modern syntax and efficient execution. You can download a disk 
+image, <a title="SDFAT.PO" href="https://github.com/dschmenk/PLASMA/blob/master/SDFAT.PO?raw=true" target="_blank">SDFAT.PO</a>,
+ containing a bootable ProDOS floppy with these programs on it, ready to
+ go. Now you have a chicken and egg problem: getting the image written 
+to an actual floppy will require a program like <a title="ADTPro" href="http://adtpro.sourceforge.net/" target="_blank">ADTPro</a>&nbsp;(or maybe a friend can create a floppy for you).</p>
+<h1>Using A2SdFat</h1>
+<p>Using the utilities involves the PLASMA command line interface. It is
+ a very simplified environment, but not hard to use. You can get a 
+ProDOS catalog by entering ‘C’ and return. To run one of the A2SdFat 
+program, use a ‘+’ to signify it is a PLASMA module, as in:</p>
+<pre>+FATCAT</pre>
+<p>The other commands take additional parameters. You will get a quick synopsis by just typing the command. But, they are:</p>
+<pre>+FATCAT [directory]
++FATGET &lt;FAT filename in CiderPress format&gt;
++FATPUT &lt;ProDOS filename&gt;
++FATWRITEIMAGE &lt;FAT filename&gt; [drive (1*, 2)]
++FATREADIMAGE &lt;FAT filename&gt; [drive (1*, 2)]
+* = default value</pre>
+<p>That should be all you need to get lots of floppy disk images read 
+and written, as well as copying ProDOS files around. Hopefully, more 
+utilities will be written to provide menu driven and batch mode copy 
+operations, but this is enough to get going.</p>
+<p>As a quick follow-up, I’ve received the cheap Chinese order from 
+BangGood of the GeekCreit Uno and Data Logger Shield. Not nearly the 
+quality of the original, but the price is right. Three knock-off Unos 
+and Data Logger Shields cost less than one original Arduino Uno. The 
+Data Logger Shield is a nice shield that has a full size SD card port 
+and a Real Time Clock chip. Here it is being built up with a socket for 
+the game port cable:</p>
+<p><a href="http://schmenk.is-a-geek.com/wordpress/wp-content/uploads/2016/08/IMG_2337.jpg"><img class="aligncenter size-medium wp-image-250" alt="IMG_2337" src="Apple%20II%20+%20Arduino%20+%20SD%20Card%20+%20SdFat%20=%20A2SdFat!%20|%20Dave%20Schmenk's%20Projects%20Page_files/IMG_2337-225x300.jpg" srcset="http://schmenk.is-a-geek.com/wordpress/wp-content/uploads/2016/08/IMG_2337-225x300.jpg 225w, http://schmenk.is-a-geek.com/wordpress/wp-content/uploads/2016/08/IMG_2337.jpg 480w" sizes="(max-width: 225px) 100vw, 225px" width="225" height="300"></a></p>
+<p><a href="http://schmenk.is-a-geek.com/wordpress/wp-content/uploads/2016/08/IMG_2335.jpg"><img class="aligncenter size-medium wp-image-249" alt="IMG_2335" src="Apple%20II%20+%20Arduino%20+%20SD%20Card%20+%20SdFat%20=%20A2SdFat!%20|%20Dave%20Schmenk's%20Projects%20Page_files/IMG_2335-225x300.jpg" srcset="http://schmenk.is-a-geek.com/wordpress/wp-content/uploads/2016/08/IMG_2335-225x300.jpg 225w, http://schmenk.is-a-geek.com/wordpress/wp-content/uploads/2016/08/IMG_2335.jpg 480w" sizes="(max-width: 225px) 100vw, 225px" width="225" height="300"></a></p>
+<p><a href="http://schmenk.is-a-geek.com/wordpress/wp-content/uploads/2016/08/IMG_2338.jpg"><img class="aligncenter size-medium wp-image-251" alt="IMG_2338" src="Apple%20II%20+%20Arduino%20+%20SD%20Card%20+%20SdFat%20=%20A2SdFat!%20|%20Dave%20Schmenk's%20Projects%20Page_files/IMG_2338-225x300.jpg" srcset="http://schmenk.is-a-geek.com/wordpress/wp-content/uploads/2016/08/IMG_2338-225x300.jpg 225w, http://schmenk.is-a-geek.com/wordpress/wp-content/uploads/2016/08/IMG_2338.jpg 480w" sizes="(max-width: 225px) 100vw, 225px" width="225" height="300"></a></p>
+<p><a href="http://schmenk.is-a-geek.com/wordpress/wp-content/uploads/2016/08/IMG_2339.jpg"><img class="aligncenter size-medium wp-image-252" alt="IMG_2339" src="Apple%20II%20+%20Arduino%20+%20SD%20Card%20+%20SdFat%20=%20A2SdFat!%20|%20Dave%20Schmenk's%20Projects%20Page_files/IMG_2339-225x300.jpg" srcset="http://schmenk.is-a-geek.com/wordpress/wp-content/uploads/2016/08/IMG_2339-225x300.jpg 225w, http://schmenk.is-a-geek.com/wordpress/wp-content/uploads/2016/08/IMG_2339.jpg 480w" sizes="(max-width: 225px) 100vw, 225px" width="225" height="300"></a></p>
+<p>&nbsp;</p>
+<p>The Arduino/AppleSlave project has been updated to use the SlaveSelect pin on pin 10 and add the <a title="Real Time Clock Library" href="https://github.com/adafruit/RTClib" target="_blank">RTCLib from AdaFruit</a>.</p>
+<p>Also, note that you will need to download a USB serial port driver to
+ use the Arduino IDE under Windows or OS X. So not quite plug and play. 
+&nbsp;I’ve created a quick video showing off the new parts:</p>
+<p><iframe src="Apple%20II%20+%20Arduino%20+%20SD%20Card%20+%20SdFat%20=%20A2SdFat!%20|%20Dave%20Schmenk's%20Projects%20Page_files/JocgWcenoPg.html" allowfullscreen="" width="474" height="267" frameborder="0"></iframe></p>
+<p>Feel free to leave feedback on the PLASMA GitHub site, or drop me a line.</p>
+<p>Enjoy!</p>
+	</div><!-- .entry-content -->
+	
+	</article><!-- #post-## -->
+	<nav class="navigation post-navigation" role="navigation">
+		<h1 class="screen-reader-text">Post navigation</h1>
+		<div class="nav-links">
+			<a href="http://schmenk.is-a-geek.com/wordpress/?p=233" rel="prev"><span class="meta-nav">Previous Post</span>Apple II, meet Arduino</a><a href="http://schmenk.is-a-geek.com/wordpress/?p=258" rel="next"><span class="meta-nav">Next Post</span>TFTP Server for Apple II</a>		</div><!-- .nav-links -->
+	</nav><!-- .navigation -->
+			</div><!-- #content -->
+	</div><!-- #primary -->
+
+<div id="secondary">
+		<h2 class="site-description">My projects to amuse and confound</h2>
+	
+	
+	</div><!-- #secondary -->
+
+		</div><!-- #main -->
+
+		<footer id="colophon" class="site-footer" role="contentinfo">
+
+			
+			<div class="site-info">
+								<a href="http://wordpress.org/">Proudly powered by WordPress</a>
+			</div><!-- .site-info -->
+		</footer><!-- #colophon -->
+	</div><!-- #page -->
+
+	<script type="text/javascript" src="Apple%20II%20+%20Arduino%20+%20SD%20Card%20+%20SdFat%20=%20A2SdFat!%20|%20Dave%20Schmenk's%20Projects%20Page_files/functions.js"></script>
+<script type="text/javascript" src="Apple%20II%20+%20Arduino%20+%20SD%20Card%20+%20SdFat%20=%20A2SdFat!%20|%20Dave%20Schmenk's%20Projects%20Page_files/wp-embed.js"></script>
+
+</body></html>

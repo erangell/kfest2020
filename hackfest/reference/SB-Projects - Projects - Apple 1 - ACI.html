@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="description" content="SB-Projects, A collection of my electronics and software projects.">
+<meta name="keywords" content="SB-Projects, DIY, hobby, electronics, projects, engineering, computers, microprocessor, microcontroller">
+<meta name="author" content="San Bergmans">
+<link rel="icon" href="https://www.sbprojects.net/favicon.ico">
+
+<title>SB-Projects - Projects - Apple 1 - ACI</title>
+
+<script src="SB-Projects%20-%20Projects%20-%20Apple%201%20-%20ACI_files/reactive_library_fy2019.js"></script><script src="SB-Projects%20-%20Projects%20-%20Apple%201%20-%20ACI_files/cookie.js"></script><script src="SB-Projects%20-%20Projects%20-%20Apple%201%20-%20ACI_files/osd.js"></script><script src="SB-Projects%20-%20Projects%20-%20Apple%201%20-%20ACI_files/show_ads_impl_fy2019.js" id="google_shimpl"></script><script type="text/javascript" async="" src="SB-Projects%20-%20Projects%20-%20Apple%201%20-%20ACI_files/ga.js"></script><script async="" src="SB-Projects%20-%20Projects%20-%20Apple%201%20-%20ACI_files/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-0802352966667466",
+          enable_page_level_ads: true
+     });
+</script>
+
+
+<link href="SB-Projects%20-%20Projects%20-%20Apple%201%20-%20ACI_files/bootstrap.css" rel="Stylesheet">
+<link href="SB-Projects%20-%20Projects%20-%20Apple%201%20-%20ACI_files/style.css" rel="stylesheet">
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+	<script src="../../js/html5shiv.min.js"></script>
+	<script src="../../js/respond.min.js"></script>
+<![endif]-->
+
+<link rel="preload" href="SB-Projects%20-%20Projects%20-%20Apple%201%20-%20ACI_files/integrator.js" as="script"><script type="text/javascript" src="SB-Projects%20-%20Projects%20-%20Apple%201%20-%20ACI_files/integrator.js"></script></head>
+
+<body>
+<nav class="navbar navbar-default navbar-fixed-top navbar-center">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-6 mybrand">
+				<ul class="nav navbar-nav navbar-nav-nocollapse pull-left">
+					<li><a href="https://www.sbprojects.net/index.php" role="button" title="My home page with my projects.">SB-Projects</a></li>
+				</ul>
+			</div>
+			<div class="col-xs-6 navmenu">
+				<ul class="nav navbar-nav navbar-nav-nocollapse pull-right">
+					<li><a href="https://www.sbprojects.net/projects/apple1/wozmon.php" class="btn btn-link" role="button" title="Woz Monitor"><span class="glyphicon glyphicon-menu-left"></span></a></li>
+					<li><a href="https://www.sbprojects.net/index.php" class="btn btn-link" role="button" title="Home"><span class="glyphicon glyphicon-home"></span></a></li>
+		            <li>
+					<button class="btn btn-link drop-btn" type="button" id="navigation" data-toggle="dropdown" aria-expanded="true" title="Apple 1 Index">
+						<span class="glyphicon glyphicon-menu-hamburger"></span><span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navigation">
+					<li><a href="https://www.sbprojects.net/projects/index.php">Projects Index</a></li>
+					<li class="divider"></li>
+					<li><a href="https://www.sbprojects.net/projects/apple1/index.php">Index</a></li>
+					<li><a href="https://www.sbprojects.net/projects/apple1/a1block.php">System Overview</a></li>
+					<li><a href="https://www.sbprojects.net/projects/apple1/terminal.php">Video Terminal</a></li>
+					<li><a href="https://www.sbprojects.net/projects/apple1/wozmon.php">Woz Monitor</a></li>
+					<li><a href="https://www.sbprojects.net/projects/apple1/aci.php">Cassette Interface</a></li>
+					<li><a href="https://www.sbprojects.net/projects/apple1/a-one-terminal.php">A-One Terminal</a></li>
+					<li><a href="https://www.sbprojects.net/projects/apple1/develop.php">Program Development</a></li>
+					<li><a href="https://www.sbprojects.net/projects/apple1/a1basic.php">Apple 1 Basic</a></li>
+					<li><a href="https://www.sbprojects.net/projects/apple1/a1asm.php">A1-Assembler</a></li>
+					<li><a href="https://www.sbprojects.net/projects/apple1/download.php">Downloads</a></li>
+					<li><a href="https://www.sbprojects.net/projects/apple1/a1links.php">Apple 1 Links</a></li>
+					</ul>
+					</li>
+					<li><a href="https://www.sbprojects.net/projects/apple1/a-one-terminal.php" class="btn btn-link" role="button" title="A-One Terminal"><span class="glyphicon glyphicon-menu-right"></span></a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</nav>
+
+<div class="container" style="height: auto !important;">
+	<div class="row" style="height: auto !important;">
+		<div class="col-sm-10 col-article" style="height: auto !important; min-height: 0px !important;">
+<h2>The Apple 1 Cassette Interface</h2>
+<p>
+<img src="SB-Projects%20-%20Projects%20-%20Apple%201%20-%20ACI_files/aci-org.jpg" class="img-responsive center-block" title="An Original Apple 1 Cassette Interface" alt="An Original Apple 1 Cassette Interface">
+</p><p>
+A basic Apple 1 lacks one important feature: a mass storage capability.
+This is where the Apple 1 Cassette Interface comes in, from now on 
+referred to as ACI.
+The ACI allows us to save memory contents to a standard audio cassette 
+and later load the contents back into memory from this audio cassette.
+<br>
+At the same time the ACI doubles the ROM capacity of the basic Apple 1, 
+from 256 bytes to an overwhelming 512 bytes (overwhelming back in '76 I 
+mean).
+</p><p>
+In this chapter I will explain how the cassette interface is used, how 
+it works electrically and how it works from a software point of view.
+</p>
+
+<h2>Using The ACI</h2>
+<p>
+The ACI program can be started by running the program from address $C100.
+After starting the ACI program an asterisk is printed and the cursor is dropped one line.
+</p>
+<pre><b>C100R</b>
+
+C100: A9*
+@
+</pre><p>
+ACI commands are very similar to monitor commands.
+In fact they all consist of a start address, a separating dot, an end address and a command.
+The command can either be an R for Read from tape, or a W for Write to tape operations.
+</p><p>
+The next example writes a block of memory from $0300 until $03FF to 
+cassette tape (data on $03FF is included).
+It's the user's responsibility to start the recording function on the 
+cassette recorder before hitting the Return key.
+This ensures that the tape speed is constant as soon as the recording 
+starts and it will automatically skip the clear leader tape at the 
+beginning of the cassette.
+</p>
+<pre><b>0300.03FFW</b>
+\
+</pre><p>
+To play back the same recording to the Apple 1 you must first locate the recording on the tape.
+Then type the following command to the Woz ACI program, but don't hit Return yet!
+Hit return at the beginning of the 10 second header.
+</p><p>
+<span class="alert-danger">Note:</span> The back slash prompt indicates you have returned to the monitor.
+It does not indicate an error situation!
+In fact the ACI does not support any error indication.
+</p>
+<pre><b>0300.03FFR</b>
+\
+</pre><p>
+After hitting return the Woz ACI program waits a few seconds to allow 
+the tape to stabilize, after which it waits for the end of the header.
+At the end of the header the program will be read from tape to memory.
+</p><p>
+You can also type more than one command per line.
+This way you can concatenate several read and/or write commands on one single line.
+</p>
+<pre><b>0000.00FFW 0200.0FFFW</b>
+\
+</pre><p>
+The above command will first write a 10 seconds long header, followed by the data from $0000 to $00FF.
+This is then immediately followed by a new 10 seconds long header and the data from $0200 to $0FFF.
+</p><p>
+It is extremely important to keep the address ranges during read 
+commands exactly the same as they were used with the respective write 
+commands.
+</p><div style="width: 100%; height: auto; clear: none; text-align: center;" class="google-auto-placed ap_container"><ins style="display: block; margin: auto; background-color: transparent; height: 280px;" data-ad-format="auto" class="adsbygoogle adsbygoogle-noablate" data-ad-client="ca-pub-0802352966667466" data-adsbygoogle-status="done"><ins id="aswift_1_expand" style="display:inline-table;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:1000px;background-color:transparent;"><ins id="aswift_1_anchor" style="display: block; border: medium none; height: 280px; margin: 0px; padding: 0px; position: relative; visibility: visible; width: 1000px; background-color: transparent; overflow: visible;"><iframe id="aswift_1" name="aswift_1" style="left:0;position:absolute;top:0;border:0;width:1000px;height:280px;" src="SB-Projects%20-%20Projects%20-%20Apple%201%20-%20ACI_files/ads.html" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" data-google-container-id="a!1" data-google-query-id="COjTr7XN1OoCFdvAuwgdK60BuA" data-load-complete="true" width="1000" height="280" frameborder="0"></iframe></ins></ins></ins></div><p>
+<span class="alert-warning">TIP:</span> You can add a spoken note in 
+front of each recording with information about the following data such 
+as its purpose, and its start and end addresses.
+</p><hr><p>
+Spaces are ignored in the input field.
+The commands are only executed as soon as you press the Return key.
+Only the characters 0..9, A..F, 'R', 'W' and '.' are allowed in the ACI 
+input field.
+Any other character (including lower case and Ctrl characters) will 
+cause the parsing of the input field to stop, returning you to the 
+beginning of the ACI program.
+<br>
+Errors are detected when parsing the input line.
+This means that a command line with multiple commands may be executed only partially until the input error is detected.
+</p><hr><p>
+It is the intention to keep the address range of a read command equal to
+ the address range used by the command which wrote the data to tape.
+The start address of the memory block may be different though.
+This allows you to read a piece of data into another memory location.
+<br>
+Be warned though that reading data into a different location will most 
+likely result in a program which doesn't work because absolute addresses
+ are not automatically renumbered.
+</p><p>
+In fact the address range of the playback may differ, with the possible 
+result of a program which does not work.
+It is not really a problem if the address range on tape is shorter than 
+the read address range.
+All available data is read from tape, only control is not returned to 
+the ACI or Woz Monitor because the ACI program is still waiting for more
+ data to arrive.
+<br>
+This probably means that you'll have to press RESET to regain control of the Apple 1.
+In that case the data read from tape is still in memory and can be used as intended.
+</p><div style="width: 100%; height: auto; clear: none; text-align: center;" class="google-auto-placed ap_container"><ins style="display: block; margin: auto; background-color: transparent; height: 280px;" data-ad-format="auto" class="adsbygoogle adsbygoogle-noablate" data-ad-client="ca-pub-0802352966667466" data-adsbygoogle-status="done"><ins id="aswift_2_expand" style="display:inline-table;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:1000px;background-color:transparent;"><ins id="aswift_2_anchor" style="display: block; border: medium none; height: 280px; margin: 0px; padding: 0px; position: relative; visibility: visible; width: 1000px; background-color: transparent; overflow: visible;"><iframe id="aswift_2" name="aswift_2" style="left:0;position:absolute;top:0;border:0;width:1000px;height:280px;" src="SB-Projects%20-%20Projects%20-%20Apple%201%20-%20ACI_files/ads.html" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" data-google-container-id="a!2" data-google-query-id="CJaLsLXN1OoCFZTLuwgdJlcNSA" data-load-complete="true" width="1000" height="280" frameborder="0"></iframe></ins></ins></ins></div><p>
+In case the address range on tape is longer than the range you've 
+selected to be read you'll end up with only a part of the data you had 
+saved.
+The rest of the data on tape is simply ignored.
+</p><hr><p>
+<span class="alert-danger">Tip:</span> Recordings made with the ACI are fairly unreliable measured by today's standard.
+For example there is no error correction/detection performed on the data read from tape.
+If you're saving very important data, save it twice or maybe even three times in a row.
+If one recording fails, you'll always have the other(s) to fall back on.
+</p><hr><p>
+There are a few minor differences between the input of ACI commands compared to Woz Monitor commands.
+</p><p>
+First of all the entire page $0200 is used for input, not only the first
+ half of it like with the Woz Monitor.
+This shouldn't be a problem because you probably don't need more than 30
+ bytes of input buffer anyway.
+Only if you want to do something silly, like entering more than 256 
+characters you'll notice that the ACI program simply forgets the first 
+256.
+</p><p>
+Next comes the fact that the ACI program does not allow the use of a back space character.
+If you detect a typing error before you hit Return you can simply press ESC to trash it all and start your command from scratch.
+<br>
+Hexadecimal input errors can also be corrected by simply typing more than 4 digits.
+Only the last 4 digits of a hexadecimal number are used, all preceding digits will be discarded.
+</p><hr><p>
+There is a small undocumented feature built into the ACI regarding 
+address input.
+When the input of the start address is separated from the input of the 
+end address by the separation dot, the start address is copied to a new 
+location in memory without clearing the old location.
+Then the end address is composed into the memory location which still 
+holds a copy of the start address.
+<br>
+Thus if you enter a 3 digit end address, the left most 4th digit will be a left over from the start address.
+Entering a 2 digit address will leave you even with 2 digits from the start address.
+</p>
+<pre><b>300.3FFW</b>
+</pre><p>
+The example above will write a block of memory from $0300 to $03FF.
+No problem, that's what we've intended, isn't it.
+Yes it is, but you don't know how lucky you are!
+In fact the zero in $<b>0</b>3FF is a left over from the right most zero of $030<b>0</b>.
+</p>
+<pre><b>301.3FFW</b>
+</pre><p>
+Now you ran out of luck!
+The example above will save a block of memory beginning at $0301 and ending at $13FF!
+Simply because the '1' is left over from the start address.
+<br>
+In this example the only penalty will be that the recording is far too long.
+The relevant data is recorded, along with a lot of irrelevant data.
+However I can imagine that while reading the same block into memory it may destroy parts of valuable other data in memory.
+</p><p>
+To avoid problems with this undocumented features I advice you to always
+ use a 4 digit end address, even if there are leading zeroes involved.
+</p>
+
+<h2>The ACI Circuit Description</h2>
+<p>
+First of all it is important to place the jumpers on the original Apple 1
+ main board correctly.
+These jumpers can be found at locations B9 and B10.
+For the ACI a jumper must be connected between points 'R' and 'C', this 
+causes the ACI ROM to appear in the 13th block of memory (the $Cxxx 
+block).
+</p><p>
+The description of the hardware is illustrated by some excerpts from the
+ original schematic diagram which was included in the ACI's user manual.
+You can find a scan of the ACI's user manual in the downloads section.
+</p><hr><p>
+<img src="SB-Projects%20-%20Projects%20-%20Apple%201%20-%20ACI_files/aci-amp.png" class="img-right" title="ACI Input Amplifier" alt="ACI Input Amplifier">
+Let's start with probably the easiest part of the entire circuit, the 
+input amplifier.
+Basically it is a zero crossing detector.
+The AC input signal is superimposed on a DC voltage of half the supply 
+voltage, after which it is fed to the negative input of the Opamp.
+The positive input of the Opamp is held at half the supply voltage and 
+is used as a reference.
+Whenever the voltage on the input is above the reference voltage, the 
+output of the Opamp is low.
+Otherwise the output of is high.
+The 47k resistor provides for a small hysteresis which raises or lowers 
+the reference voltage a little to avoid jitter around the tripping point
+ of the circuit.
+</p><p>
+It can be rather critical to get the input signal level just right.
+You'll learn soon enough which volume setting on your cassette player gives the best results.
+<br>
+To help you to adjust the input level an LED indicator is provided.
+According to the user manual this LED should just start to glow fully, whatever that may be.
+If that doesn't work you should increase the volume of the cassette player just a little until you get it right.
+</p><hr><p>
+<img src="SB-Projects%20-%20Projects%20-%20Apple%201%20-%20ACI_files/aci-cs.png" class="img-left" title="ACI chip select and output circuitry" alt="ACI chip select and output circuitry">
+Next comes the Chip Select circuitry.
+As a bonus this circuit also includes the cassette output.
+<br>
+The two NOR gates on the left decode the highest address lines A9, A10, 
+A11 and the block select signal which is connected to Block 'C' on the 
+Apple 1 main board.
+Both outputs are "1" when all 4 inputs are low.
+These two outputs are fed to the 3-input NAND gate, which also gets the 
+Φ2 signal on its third pin.
+Only when all 3 lines are high the output will be low.
+<br>
+This all means that the output of this 3-input NAND is low whenever the 
+address is in the range of $C000 to $C1FF.
+This signal is used as Chip Select for the PROM, which means that the 
+PROM can be seen from both ranges starting at $C000 and at $C100.
+Only the one starting at $C100 is actually used by the software.
+</p><p>
+The next NOR gate adds the signal from A8 to the game, which means that 
+the output of the NOR gate is high when the address is in the range from
+ $C000 to $C0FF.
+This range is actually used as I/O range by the ACI software.
+</p><div style="width: 100%; height: auto; clear: none; text-align: center;" class="google-auto-placed ap_container"><ins style="display: block; margin: auto; background-color: transparent; height: 280px;" data-ad-format="auto" class="adsbygoogle adsbygoogle-noablate" data-ad-client="ca-pub-0802352966667466" data-adsbygoogle-status="done"><ins id="aswift_3_expand" style="display:inline-table;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:1000px;background-color:transparent;"><ins id="aswift_3_anchor" style="display: block; border: medium none; height: 280px; margin: 0px; padding: 0px; position: relative; visibility: visible; width: 1000px; background-color: transparent; overflow: visible;"><iframe id="aswift_3" name="aswift_3" style="left:0;position:absolute;top:0;border:0;width:1000px;height:280px;" src="SB-Projects%20-%20Projects%20-%20Apple%201%20-%20ACI_files/ads.html" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" data-google-container-id="a!3" data-google-query-id="COqzsLXN1OoCFXrIuwgd6VANfQ" data-load-complete="true" width="1000" height="280" frameborder="0"></iframe></ins></ins></ins></div><p>
+The signal from the last NOR gate is fed to the flip-flop, which generates the output signal to the cassette recorder.
+Each time an address in the range from $C000 to $C0FF is accessed the flip-flop changes state.
+The data read from such action can be ignored because all we need is really the read action itself.
+<br>
+The output from the last NOR gate is also fed to the input circuitry which I will discuss next.
+</p><hr><p>
+<img src="SB-Projects%20-%20Projects%20-%20Apple%201%20-%20ACI_files/aci-in.png" class="img-left" title="ACI Input Select circuitry" alt="ACI Input Select circuitry">
+Here we have a real clever piece of circuitry.
+We still need a way for the software to read the input.
+Let me start to explain what the idea behind it is before I'll show you how it is done.
+<br>
+The output of the input amplifier (AMP) modifies address line A0 to the 
+PROM whenever an odd address is read from the range of $C081 to $C0FF.
+This way the software actually reads from an even address or an odd 
+address, depending on the output state of the input amplifier.
+We will later see how the software interprets this behaviour.
+</p><p>
+The left most 3-input NAND gets signals from the Chip Select circuit described above, A7 and the input amplifier's output.
+Only when all three of those signals are high, the output of the NAND gets low.
+<br>
+This low is combined with the original A0 signal in the next NAND.
+Its output will follow the inverse of A0 for as long as the first NAND's
+ output is high, which fortunately is almost always.
+This can only change when an address is read in the range from $C080 to 
+$C0FF, then the output of the second NAND will be high if the input 
+amplifier's output is high, regardless of the level of A0.
+<br>
+Now we only have to invert the output of the second NAND to achieve the proper polarity of the A0 signal for the PROM.
+</p><div style="width: 100%; height: auto; clear: none; text-align: center;" class="google-auto-placed ap_container"><ins style="display: block; margin: auto; background-color: transparent; height: 280px;" data-ad-format="auto" class="adsbygoogle adsbygoogle-noablate" data-ad-client="ca-pub-0802352966667466" data-adsbygoogle-status="done"><ins id="aswift_4_expand" style="display:inline-table;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:1000px;background-color:transparent;"><ins id="aswift_4_anchor" style="display: block; border: medium none; height: 280px; margin: 0px; padding: 0px; position: relative; visibility: visible; width: 1000px; background-color: transparent; overflow: visible;"><iframe id="aswift_4" name="aswift_4" style="left:0;position:absolute;top:0;border:0;width:1000px;height:280px;" src="SB-Projects%20-%20Projects%20-%20Apple%201%20-%20ACI_files/ads.html" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" data-google-container-id="a!4" data-google-query-id="CPKqsLXN1OoCFWfjuwgdK80KYQ" data-load-complete="true" width="1000" height="280" frameborder="0"></iframe></ins></ins></ins></div><p>
+Needless to say that this only happens when reading from I/O space!
+A0 is never modified when reading from ROM space ($C100 to $C1FF).
+</p><p>
+And yes, in case you're wondering, the cassette output will constantly change state whenever the cassette input is polled.
+But that will be at such a high frequency that you probably won't notice it.
+</p>
+
+<h2>The ACI Software Description</h2>
+<p>
+Again it was a very tight fit to squeeze the Apple 1 Cassette Interface software into the 256 bytes of available PROM.
+Again there were some concessions to be made regarding the human interface, but we'll cover them in due time.
+The source code wozaci.asm is part of a download package which can be downloaded from the <a href="https://www.sbprojects.net/projects/apple1/download.php">downloads section</a>.
+</p><p class="text-center">
+	<iframe src="SB-Projects%20-%20Projects%20-%20Apple%201%20-%20ACI_files/wozaci.txt" width="620" height="380">
+	&lt;span style="color:blue;"&gt;
+	Sorry, your browser doesn't support I-Frames, therefore I can't show you the program listing here.
+	Please download the program listing and open it in a text editor or other kind of viewer if you want to take a look at it.
+	&lt;/span&gt;
+	</iframe>
+	<br>
+	<i>wozaci.asm program listing</i>
+</p><p>
+The program starts by printing an asterisk, ACI's prompt, followed by a carriage return.
+Then the input buffer pointer is reset before we enter the command input loop.
+This loop will only exit when a CR is received or when the ESC key is pressed.
+The ESC key will send the program back to the beginning of the ACI program, the CR key will start the parsing of the command(s).
+<br>
+Inside the input loop every typed character is simply stored in the input buffer and echoed to the screen.
+</p><p>
+This is where we'll find the first concessions regarding the human 
+interface.
+No attempts are made to reject control characters for instance, this is 
+not really a problem though because wrong keys will be detected during 
+parsing anyway.
+No attempt is made to limit the input buffer length, the entire page 2 
+can be filled with input characters.
+When the page 2 is full the pointer simply wraps around, effectively 
+forgetting all previous 256 typed characters.
+Only a fool behind the keyboard will notice this of course.
+</p><div style="width: 100%; height: auto; clear: none; text-align: center;" class="google-auto-placed ap_container"><ins style="display: block; margin: auto; background-color: transparent; height: 280px;" data-ad-format="auto" class="adsbygoogle adsbygoogle-noablate" data-ad-client="ca-pub-0802352966667466" data-adsbygoogle-status="done"><ins id="aswift_5_expand" style="display:inline-table;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:1000px;background-color:transparent;"><ins id="aswift_5_anchor" style="display: block; border: medium none; height: 280px; margin: 0px; padding: 0px; position: relative; visibility: visible; width: 1000px; background-color: transparent; overflow: visible;"><iframe id="aswift_5" name="aswift_5" style="left:0;position:absolute;top:0;border:0;width:1000px;height:280px;" src="SB-Projects%20-%20Projects%20-%20Apple%201%20-%20ACI_files/ads.html" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" data-google-container-id="a!5" data-google-query-id="CIawsLXN1OoCFcrmuwgd73EMsQ" data-load-complete="true" width="1000" height="280" frameborder="0"></iframe></ins></ins></ins></div><p>
+As soon as a CR character is typed we start the parsing of commands from the input buffer.
+Remember that there can be more than one command on each input line.
+<br>
+First of all two 16-bits values are cleared to 0.
+Keep this in mind, we'll soon find out that this is part of the 
+undocumented feature I talked about regarding the input of the end 
+address.
+<br>
+There are a total of 3 special characters to be recognized in the input buffer:
+An 'R', which triggers the Read command.
+A 'W', which triggers the Write command.
+And a dot, which separates the begin and end addresses.
+Here we see some other concessions regarding the user interface.
+For instance it is perfectly possible to give a Read or Write command without entering either a start or end address.
+It is also possible to use more than one separator dot, effectively entering more than 2 addresses for one command.
+This is not really a problem, the ACI program simply uses the last two.
+<br>
+Spaces are simply ignored, no matter where they appear.
+For instance you can type <span class="inline-code">0 3 0 0 . 0 3 F F W</span>, and it is still accepted!
+<br>
+The last thing we have to parse are the hexadecimal digits.
+We've seen exactly the same code in the Woz Monitor.
+If an illegal character is found the parsing is aborted and the ACI program is restarted from scratch.
+</p><p>
+Now it's time to explain the undocumented feature of the end address input.
+Have a look at the code following the label <span class="inline-code">SEP</span>.
+When a dot is entered, the address in HEX1 is copied to <span class="inline-code">HEX2</span>, however HEX1 is not cleared after that.
+New hex-digits will shift in from the right, bumping the old digits out from the left.
+This means that if you enter less than 4 digits in the second address there are still some digits in <span class="inline-code">HEX1</span> which don't belong there any more.
+<br>
+Obviously it was all a matter of lack of program memory which caused this undocumented feature.
+</p><p>
+<img src="SB-Projects%20-%20Projects%20-%20Apple%201%20-%20ACI_files/aci-ad-mini.jpg" class="img-right" title="The original ad for the ACI" alt="The original ad for the ACI">
+The Write routine starts by writing a 10 seconds long header, after that the data bytes are written to tape.
+Each time a new byte is collected from memory, which is then shifted out bit by bit.
+Then the begin address is incremented until it is higher than the end address.
+<br>
+Because all timing is done in software loops you'll see quite a lot of 
+compensation instructions in the different parts of the process.
+Their purpose is to compensate for the extra work which is needed to get
+ new bytes, shift bits and increment addresses.
+</p><p>
+The Read routine may appear to be a little more complicated at first, but we'll manage it all the same.
+First we try to detect a full cycle of the input signal to assure us that the tape really has been started.
+Then we introduce a short delay to allow the tape speed to stabilize.
+The write header routine is abused to create this delay.
+This has one extra benefit, it saves the X pointer for us which we need later in order to parse the next command.
+Finally another full cycle is detected to synchronize the timing with the tape signal.
+<br>
+Then we start a loop which must detect the start bit, which is shorter than the other bits in the header.
+When the start bit is detected we have to wait for the second half of the start-bit before we can start reading the actual data.
+<br>
+Now it's time to read in the data.
+Obviously all bytes contain 8 bits, which explains the <span class="inline-code">RDBIT</span>
+ loop.
+Inside this loop we measure the duration of a full cycle.
+If the timer value passes the 0 we know that the time was longer than 
+the average between a "1" and a "0", and vice versa.
+As soon as a byte is read it is stored in memory, after which the begin 
+address is incremented until it is larger than the end address.
+<br>
+Here we also see some compensation values for the timing to overcome the differences in workload.
+<br>
+The <span class="inline-code">FULLCYCLE</span> routine simply calls the <span class="inline-code">CMPLEVEL</span> routine, which is effectively executed twice this way.
+The timer is decremented, which will finally indicate the interval time for a full cycle.
+And now we come to the clever part of Steve's hardware.
+Remember the way we read the input, by manipulating address line A0 to the PROM?
+Well the <span class="inline-code">LDA TAPEIN</span> instruction may effectively load the accumulator with the value on <span class="inline-code">$C080</span> or <span class="inline-code">$C081</span>.
+We're not interested in the actual value in neither of these addresses, we only want them to be different.
+And fortunately they are different.
+<br>
+The <span class="inline-code">CMP #128</span> instruction at the end will set the Carry flag according to the measured time.
+If the timer crosses the 0 the carry will be set, otherwise the carry will be cleared.
+Now the carry represents the level of the new bit.
+</p><p>
+The <span class="inline-code">WHEADER</span> routine is responsible for writing the header to the tape.
+First of all the parse pointer X is saved.
+Then we see two nested loops.
+<br>
+The inner loop uses the X register, which counts a full cycle each time.
+Well not each time, the first time the X register doesn't contain 0 to start with.
+But that is only a marginal difference, which is hardly noticeable.
+<br>
+The outer loop uses the Accumulator as counter.
+Since there is no <span class="inline-code">DEA</span> instruction on the NMOS version of the 6502 we have to use the <span class="inline-code">ADC</span> instruction.
+We only subtract 1 here, because the carry is always set inside the loop!
+The end result is indeed a header with a time of about 10 seconds.
+<br>
+When the program finally falls through the outer loop a relatively short bit is written (<span class="inline-code">LDA #30</span>) which will function as start bit.
+</p><p>
+Now we arrive at the <span class="inline-code">WRITEBIT</span> routine.
+This routine is a concatenation of some timing loops.
+The first loop times a single phase of the 2kHz frequency (in case the 
+data bit is 0), this loop is only followed by a second loop if a 1kHz 
+phase is required.
+<br>
+The <span class="inline-code">WDELAY</span> routine is executed twice to create a full cycle of the selected frequency.
+</p><p>
+Finally the <span class="inline-code">INCADDR</span> routine first compares the begin address with the end address to see if we're done.
+The actual decision is postponed though to the calling routine, only the Carry flag is set accordingly.
+<br>
+Then the address is simply incremented.
+And then the 256 bytes of the PROM are completely filled again.
+</p><hr><p>
+I have only a few last remarks to make regarding the ACI software.
+First of all there was no room to initialize the stack pointer again.
+This means that you cannot read data into page $01 and expect it to 
+survive the stack actions of the ACI program because the stack can be 
+all over the place.
+<br>
+The second memory space you have to stay clear of are the addresses <span class="inline-code">$0024</span> to <span class="inline-code">$0029</span>, which are used by the ACI program.
+<br>
+Finally you should be aware of the use of page $02 as input buffer.
+If you keep the tape commands short, you should be able to use most of page $02 though.
+</p>
+	</div>
+		<div class="hidden-xs col-sm-2 col-ads">
+			<h3 class="text-center">Navigation</h3>
+<p class="text-center">
+<a href="https://www.sbprojects.net/navigation.php">How to navigate</a>
+</p>
+
+<script><!--
+	$nofiframes = document.getElementsByTagName("iframe").length
+--></script>
+
+<h3 class="text-center">Sponsors</h3>
+<p class="small text-center">
+Please consider clicking on the <a href="https://www.sbprojects.net/donate.php">Support Me</a> button to show your appreciation.
+</p><p>
+<a href="https://www.sbprojects.net/donate.php">
+<img src="SB-Projects%20-%20Projects%20-%20Apple%201%20-%20ACI_files/donate.png" class="center-block" title="Donate" alt="Donate">
+</a></p>
+
+<p class="small text-center">My way of keeping this site alive.</p>
+		</div>
+	</div>
+</div>
+<div class="navbar navbar-default navbar-fixed-bottom navbar-center navbar-footer">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-6 col-sm-4">
+				<ul class="nav navbar-nav navbar-nav-nocollapse pull-left">
+					<li><a href="https://www.sbprojects.net/copyright.php" class="vcenter btn btn-link a-footer" role="button" title="Copy right"><span class="glyphicon glyphicon-copyright-mark"></span> 2006					<span class="hidden-xs">www.sbprojects.net</span></a></li>
+				</ul>
+			</div>
+			<div class="hidden-xs col-sm-4">
+				<p class="lastupdate"><a class="footer-history" href="https://www.sbprojects.net/history/index.php">Last updated: 02 June 2019</a></p>
+			</div>
+			<div class="col-xs-6 col-sm-4">
+				<ul class="nav navbar-nav pull-right navbar-nav-nocollapse">
+					<li><a href="https://www.sbprojects.net/mailme/index.php" class="vcenter btn btn-link a-footer" role="button" title="Contact me"><span class="glyphicon glyphicon-envelope"></span></a></li>
+					<li><a href="https://www.sbprojects.net/whoami/index.php" class="vcenter btn btn-link a-footer" role="button" title="About me"><span class="glyphicon glyphicon-user"></span></a></li>
+					<li><a href="https://www.sbprojects.net/about.php" class="vcenter btn btn-link a-footer" role="button" title="About SB-Projects"><span class="glyphicon glyphicon-info-sign"></span></a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="SB-Projects%20-%20Projects%20-%20Apple%201%20-%20ACI_files/jquery.js"></script>
+<script src="SB-Projects%20-%20Projects%20-%20Apple%201%20-%20ACI_files/bootstrap.js"></script>
+<script>
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-23139180-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+    
+
+
+<ins class="adsbygoogle adsbygoogle-noablate" style="display: none !important;" data-adsbygoogle-status="done"><ins id="aswift_0_expand" style="display:inline-table;border:none;height:0px;margin:0;padding:0;position:relative;visibility:visible;width:0px;background-color:transparent;"><ins id="aswift_0_anchor" style="display:block;border:none;height:0px;margin:0;padding:0;position:relative;visibility:visible;width:0px;background-color:transparent;"><iframe id="aswift_0" name="aswift_0" style="left:0;position:absolute;top:0;border:0;width:undefinedpx;height:undefinedpx;" src="SB-Projects%20-%20Projects%20-%20Apple%201%20-%20ACI_files/ads_006.html" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" data-google-container-id="a!0" data-load-complete="true" frameborder="0"></iframe></ins></ins></ins><iframe id="google_osd_static_frame_5095027537478" name="google_osd_static_frame" style="display: none; width: 0px; height: 0px;"></iframe></body><iframe id="google_esf" name="google_esf" src="SB-Projects%20-%20Projects%20-%20Apple%201%20-%20ACI_files/zrt_lookup.html" style="display: none;" data-ad-client="ca-pub-0802352966667466"></iframe></html>

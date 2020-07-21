@@ -1,0 +1,111 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2512
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 Hackfest Project Logbook - July 17, 2020 - Eric Rangell\
+==========================================\
+Idea: Apple 1 Karaoke\
+\
+Controlled by Apple 2+, reading MIDI Format 0 files from SD card\
+In a Data Logger shield connected to an Arduino Uno.\
+Apple 1 will receive text for lyric events and do its best \
+to show karaoke lyrics as a MIDI song plays.\
+Characters in the MIDI lyrics control Apple display.\
+Up to 8 lines of lyrics displayed followed by a separator bar (40 dashes)\
+The carriage return character in the lyrics marks the end of a line.\
+If a paragraph mark is found in the song it stops displaying lyrics at that mark.\
+Then one line of the lyrics is displayed at a time.\
+A pointer to the lyrics currently playing is shown on the next line.\
+This is repeated for each line.\
+The last line of lyrics from the top of the screen must still be on the screen\
+by the time the song reaches that point.\
+Think about the Apple 1 receiving more lyrics, or the whole song, ahead of time.\
+Saving them in a buffer until they need to be displayed.  Then just wait for \
+Cue points from the Apple 2.  Or think about double buffering.\
+\
+Hardware:\
+- Apple 2+ 48k with Integer ROMs switched in via ROM card.\
+- Floppy emu or 5.25 floppy drive on Apple 2\
+- Build game socket interface to Arduino UNO using SPI protocol\
+(Uses AN0, AN1, C040 Strobe, PB0)\
+- Data Logger Shield on Arduino with SD card\
+- Apple 2 game socket MIDI OUT via AN2 and 2 inverters\
+- Arduino connected to Apple 1 Keyboard socket\
+- Foot pedal connected to a pushbutton input on Apple 2+ \
+to pause & restart song to allow the Apple 1 to catch up.\
+Software:\
+\
+Apple 1 Karaoke Lyric Display\
+- Input via the Keyboard Socket\
+\
+Apple 2\
+- Timing will be provided by the clock on board the Data Logger shield.\
+- Or the Arduino can report MILLIS().\
+- Or the 2+ can send a message to the Arduino with MIDI data to be played when MILLIS reaches a certain value.\
+- The 2+ will ask for the time and check if it is time to send more data\
+through MIDI or to the Apple 1.\
+\
+\
+CR = end of line\
+Ctl J = end of paragraph\
+Display up to Ctl J up to 10 lines\
+Draw 40 dashes\
+\
+Test with key IN loop\
+\
+\
+Apple 2 48k - prorates\
+\
+Interrupt to read clock from Arduino or clock on Data Logger shield\
+\
+ProRWTS\
+\
+\
+Apple 1 pipeline:\
+- Enter code in Open Emulator using Krusader\
+- Save emulator image\
+- Next time, open emulator image\
+- L to list source code\
+- copy each screen to TextEdit to save source as text file.\
+- Dump from monitor to text file for creating Hex text file for real hardware\
+\
+\
+18 JULY 2020\
+- Last night I got the Crusader code working - I was missing an RTS that I accidentally deleted.\
+I had to figure out the line number where to insert it.  Line editing is frustrating.\
+- I want to code the splash screen first.  It will say Apple 1 Karaoke in big letters.\
+I don\'92t need a whole font just the letters I want.\
+Arduino test programs can send lyric events\
+The Apple 1 may not receive certain characters due to line noise\
+To compensate, when playing back the lyrics it will compare the character received to the lyric buffer\
+If it sees a nearby character that matches it will assume there was a transmission error and print the\
+Bouncing ball character up to that point.  This can be simulated and tested.\
+\
+Bottom of splash screen: demo of the bouncing ball:\
+CODE BY ERIC.  MUSIC BY MELODY.\
+Syllables - simulated pauses\
+CODE BY E RIC. MU SIC BY MEL O DY.\
+\
+\
+Load Mode:\
+All characters received are stored in a buffer.  Pointers are added for finding the next line, and paragraph\
+Since separate lyric events define each syllable it is not necessary to have pointers to syllables\
+But markers should indicate the end of each syllable so it knows how much to print if it detects an error?\
+No those bytes may not be needed\
+Can it get out of sync very badly?\
+\
+Bouncing ball is the upturned arrow key\
+\
+Use vertical bar character to make graphic window\
+\
+\
+Leaning to using the 2c+ serial MIDI to Arduino for controlling the music and lyrics.\
+The apple 1 keyboard socket interface will be from the pins of the Arduino Mega.\
+It can also control a charlieplex display.\
+\
+Video the options that didn\'92t work.\
+\
+}

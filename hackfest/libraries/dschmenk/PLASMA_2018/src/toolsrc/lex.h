@@ -1,0 +1,11 @@
+extern char *statement, *scanpos, *tokenstr;
+extern t_token scantoken, prevtoken;
+extern int tokenlen;
+extern long constval;
+extern char inputline[];
+void parse_error(const char *errormsg);
+void parse_warn(const char *warnmsg);
+int next_line(void);
+void scan_rewind(char *backptr);
+int scan_lookahead(void);
+t_token scan(void);
