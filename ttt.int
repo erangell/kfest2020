@@ -1,0 +1,65 @@
+5  XBANK = 0 : OBANK = 0
+10  DIM TT ( 10 )
+15  XWIN = 0 : OWIN = 0
+16  IF XBANK >= 0 THEN 18
+17  PRINT "X BROKE THE BANK!" : END
+18  IF OBANK >= 0 THEN 20
+19  PRINT "O BROKE THE BANK!" : END
+20  FOR I = 1 TO 9 : TT ( I ) = 0 : NEXT I
+25  BTC = RND( 5000 )
+30  FIRSTTIME = 1 : GOSUB 1000 : FIRSTTIME = 0
+60  PRINT "X:" ; : INPUT X : IF X < 1 OR X > 9 THEN 60
+65  IF TT ( X ) # 0 THEN 60
+70  TT ( X ) = 1
+75  GOSUB 2000 : IF XWIN = 0 THEN 80
+77  XBANK = XBANK + BTC : GOTO 15
+80  GOSUB 3000 : IF DRW = 1 THEN 15
+81  GOSUB 1000
+82  PRINT "O:" ; : INPUT O : IF O < 1 OR O > 9 THEN 82
+85  IF TT ( O ) # 0 THEN 82
+90  TT ( O ) = 2
+95  GOSUB 2000 : IF OWIN = 0 THEN 100
+97  OBANK = OBANK + BTC : GOTO 15
+100  GOSUB 1000 : GOTO 60
+999  END
+1000  CALL -936
+1001  BTC = RND( 5000 )
+1003  FOR I = 1 TO 9
+1004  IF FIRSTTIME # 1 THEN 1010
+1005  PRINT " " ; I ; " " ; : GOTO 1030
+1010  IF TT ( I ) = 1 THEN PRINT " X " ;
+1020  IF TT ( I ) = 2 THEN PRINT " O " ;
+1025  IF TT ( I ) = 0 THEN PRINT " " ; I ; " " ;
+1030  IF ( I MOD 3 ) # 0 THEN 1040
+1031  PRINT : IF I < 9 THEN PRINT "============" ;
+1032  IF I # 3 THEN 1034
+1033  TAB ( 20 ) : ? "BITCOIN = $" ; BTC
+1034  IF I # 6 THEN 1036
+1035  TAB ( 20 ) : ? "X: $" ; XBANK
+1036  IF I # 9 THEN 1039
+1037  TAB ( 20 ) : ? "O: $" ; OBANK
+1039  GOTO 1050
+1040  PRINT "|" ;
+1050  NEXT I
+1060  RETURN
+2000  XWIN = 0 : YWIN = 0
+2010  IF TT ( 1 ) = 1 AND TT ( 2 ) = TT ( 1 ) AND TT ( 3 ) = TT ( 2 ) THEN XWIN = 1
+2020  IF TT ( 1 ) = 2 AND TT ( 2 ) = TT ( 1 ) AND TT ( 3 ) = TT ( 2 ) THEN OWIN = 1
+2030  IF TT ( 4 ) = 1 AND TT ( 4 ) = TT ( 5 ) AND TT ( 5 ) = TT ( 6 ) THEN XWIN = 1
+2040  IF TT ( 4 ) = 2 AND TT ( 4 ) = TT ( 5 ) AND TT ( 5 ) = TT ( 6 ) THEN OWIN = 1
+2050  IF TT ( 7 ) = 1 AND TT ( 7 ) = TT ( 8 ) AND TT ( 8 ) = TT ( 9 ) THEN XWIN = 1
+2060  IF TT ( 7 ) = 2 AND TT ( 7 ) = TT ( 8 ) AND TT ( 8 ) = TT ( 9 ) THEN OWIN = 1
+2070  IF TT ( 1 ) = 1 AND TT ( 1 ) = TT ( 4 ) AND TT ( 4 ) = TT ( 7 ) THEN XWIN = 1
+2080  IF TT ( 1 ) = 2 AND TT ( 1 ) = TT ( 4 ) AND TT ( 4 ) = TT ( 7 ) THEN OWIN = 1
+2090  IF TT ( 2 ) = 1 AND TT ( 2 ) = TT ( 5 ) AND TT ( 5 ) = TT ( 8 ) THEN XWIN = 1
+2100  IF TT ( 2 ) = 2 AND TT ( 2 ) = TT ( 5 ) AND TT ( 5 ) = TT ( 8 ) THEN OWIN = 1
+2110  IF TT ( 3 ) = 1 AND TT ( 3 ) = TT ( 6 ) AND TT ( 6 ) = TT ( 9 ) THEN XWIN = 1
+2120  IF TT ( 3 ) = 2 AND TT ( 3 ) = TT ( 6 ) AND TT ( 6 ) = TT ( 9 ) THEN OWIN = 1
+2130  IF TT ( 3 ) = 1 AND TT ( 3 ) = TT ( 5 ) AND TT ( 5 ) = TT ( 7 ) THEN XWIN = 1
+2140  IF TT ( 3 ) = 2 AND TT ( 3 ) = TT ( 5 ) AND TT ( 5 ) = TT ( 7 ) THEN OWIN = 1
+2150  IF TT ( 1 ) = 1 AND TT ( 1 ) = TT ( 5 ) AND TT ( 5 ) = TT ( 9 ) THEN XWIN = 1
+2160  IF TT ( 1 ) = 2 AND TT ( 1 ) = TT ( 5 ) AND TT ( 5 ) = TT ( 9 ) THEN OWIN = 1
+2999  RETURN
+3000  DRW = 0
+3010  IF TT ( 1 ) # 0 AND TT ( 2 ) # 0 AND TT ( 3 ) # 0 AND TT ( 4 ) # 0 AND TT ( 5 ) # 0 AND TT ( 6 ) # 0 AND TT ( 7 ) # 0 AND TT ( 8 ) # 0 AND TT ( 9 ) # 0 THEN DRW = 1
+3020  RETURN
