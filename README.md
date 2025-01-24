@@ -1,5 +1,6 @@
 # kfest2020
-Files and code for Kansasfest 2020 presentation
+Files and code for Kansasfest 2020 presentation:
+https://youtu.be/Ti5nanCY1so?si=aI9Y-JQoIkTm_VH5
 
 Links from the presentation:
 * Ted Nelson's Junk Mail: https://archive.org/details/tednelsonjunkmail
